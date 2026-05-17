@@ -386,8 +386,8 @@ button { background: none; border: 0; color: inherit; font: inherit; cursor: poi
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 280px;
-  gap: 16px;
+  grid-auto-rows: 320px;
+  gap: 18px;
 }
 .project-card {
   position: relative; overflow: hidden;
@@ -395,6 +395,7 @@ button { background: none; border: 0; color: inherit; font: inherit; cursor: poi
   border-radius: var(--rad);
   cursor: pointer;
   display: block;
+  isolation: isolate;
 }
 .project-card.big { grid-column: span 2; grid-row: span 2; }
 .pc-img {
@@ -404,59 +405,87 @@ button { background: none; border: 0; color: inherit; font: inherit; cursor: poi
 .pc-img img {
   width: 100%; height: 100%;
   object-fit: cover;
-  transition: transform 1.4s var(--ease), filter .6s var(--ease);
-  filter: grayscale(20%) brightness(.85);
+  transition: transform 1.6s var(--ease), filter .6s var(--ease);
+  filter: brightness(.78) contrast(1.05);
 }
 .project-card:hover .pc-img img {
-  transform: scale(1.08);
-  filter: grayscale(0%) brightness(1);
+  transform: scale(1.06);
+  filter: brightness(.88) contrast(1.05);
 }
 .pc-img::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,10,10,.85) 0%, rgba(10,10,10,.2) 50%, transparent 100%);
+  background:
+    linear-gradient(to top, rgba(10,10,10,.92) 0%, rgba(10,10,10,.35) 45%, rgba(10,10,10,.05) 75%, rgba(10,10,10,.35) 100%);
   z-index: 1;
 }
+
+/* Professional Liwa stamp — always visible top corner */
+.pc-stamp {
+  position: absolute; top: 18px; inset-inline-start: 18px;
+  z-index: 3;
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 14px;
+  background: rgba(246, 244, 239, .94);
+  color: var(--ink);
+  border-radius: 2px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 18px rgba(0,0,0,.25);
+}
+.pc-stamp-mark {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px; font-weight: 500; line-height: 1;
+  letter-spacing: -.01em;
+}
+.pc-stamp-mark span { color: var(--accent); }
+.pc-stamp-line {
+  width: 1px; height: 16px; background: var(--ink); opacity: .25;
+}
+.pc-stamp-sub {
+  font-family: "Inter", sans-serif;
+  font-size: 8px; letter-spacing: .3em; color: var(--mute);
+  text-transform: uppercase;
+}
+
+/* Project metadata overlay (bottom) */
 .pc-overlay {
   position: absolute; inset: 0;
   padding: 28px;
   display: flex; flex-direction: column; justify-content: flex-end;
   z-index: 2;
-  transform: translateY(8px);
-  transition: transform .5s var(--ease);
+  pointer-events: none;
 }
-.project-card:hover .pc-overlay { transform: translateY(0); }
 .pc-cat {
-  display: inline-block;
+  display: inline-flex; align-items: center; gap: 8px;
   font-size: 10px; letter-spacing: .3em;
   color: var(--accent-2); text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+}
+.pc-cat::before {
+  content: ""; width: 18px; height: 1px; background: var(--accent-2);
 }
 .pc-title {
   font-family: "Cormorant Garamond", serif;
-  font-size: 26px; font-weight: 500;
-  margin-bottom: 6px; line-height: 1.2;
+  font-size: 28px; font-weight: 500;
+  margin-bottom: 8px; line-height: 1.15;
+  color: #fff;
 }
-[data-lang="ar"] .pc-title { font-family: "Tajawal", serif; font-weight: 700; font-size: 22px; }
-.project-card.big .pc-title { font-size: 36px; }
-[data-lang="ar"] .project-card.big .pc-title { font-size: 28px; }
-.pc-loc { font-size: 12px; opacity: .8; letter-spacing: .1em; }
-.pc-watermark {
-  position: absolute; top: 20px; inset-inline-end: 20px;
-  z-index: 3;
-  background: rgba(246, 244, 239, .92);
-  color: var(--ink);
-  padding: 8px 14px;
-  border-radius: 2px;
-  opacity: 0; transform: translateY(-8px);
-  transition: opacity .4s var(--ease), transform .4s var(--ease);
-  backdrop-filter: blur(8px);
+[data-lang="ar"] .pc-title { font-family: "Tajawal", serif; font-weight: 700; font-size: 24px; }
+.project-card.big .pc-title { font-size: 42px; }
+[data-lang="ar"] .project-card.big .pc-title { font-size: 32px; }
+.pc-loc {
+  display: block;
+  font-size: 12px; letter-spacing: .12em;
+  opacity: .85; color: #f6f4ef;
 }
-.pc-watermark .brand-name {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 18px; font-weight: 500;
+.pc-credit {
+  display: block;
+  margin-top: 14px;
+  font-size: 10px; letter-spacing: .15em;
+  color: var(--accent-2); opacity: .9;
+  text-transform: uppercase;
 }
-.pc-watermark .brand-dot { color: var(--accent); }
-.project-card:hover .pc-watermark { opacity: 1; transform: translateY(0); }
+[data-lang="ar"] .pc-credit { letter-spacing: .05em; font-size: 11px; }
 
 /* ============== Vision ============== */
 .vision { background: var(--ink); color: var(--bg); }
@@ -643,9 +672,13 @@ a.contact-line:hover { padding-inline-start: 16px; }
   .clients-grid { grid-template-columns: repeat(3, 1fr); }
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 240px;
+    grid-auto-rows: 280px;
   }
   .project-card.big { grid-column: span 2; grid-row: span 1; }
+  .pc-stamp { padding: 7px 11px; gap: 8px; top: 14px; inset-inline-start: 14px; }
+  .pc-stamp-mark { font-size: 16px; }
+  .pc-stamp-sub { font-size: 7px; }
+  .pc-stamp-line { height: 14px; }
   .footer-grid { padding: 60px 24px 32px; grid-template-columns: 1fr; gap: 40px; }
   .foot-bottom { padding: 20px 24px; }
   .hero-scroll { display: none; }
@@ -695,14 +728,14 @@ a.contact-line:hover { padding-inline-start: 16px; }
   .clients-grid { grid-template-columns: 1fr 1fr; }
   .projects-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: 220px;
-    gap: 12px;
+    grid-auto-rows: 260px;
+    gap: 14px;
   }
   .project-card.big { grid-column: span 1; }
   .pc-overlay { padding: 22px; }
   .pc-title { font-size: 22px !important; }
-  .project-card.big .pc-title { font-size: 24px !important; }
-  .pc-watermark { opacity: 1 !important; transform: translateY(0) !important; }
+  .project-card.big .pc-title { font-size: 26px !important; }
+  .pc-credit { font-size: 10px !important; margin-top: 10px; }
   .foot-cols { grid-template-columns: 1fr; gap: 28px; }
   .contact-form { padding: 24px 20px; }
   .vision-quote { font-size: 22px; line-height: 1.5; }
