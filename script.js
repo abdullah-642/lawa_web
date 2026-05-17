@@ -347,10 +347,121 @@
     window.addEventListener("load", () => { init3D(); initAboutCard(); });
   }
 
-  // ----------- Auto-load local project photos (overrides Unsplash defaults) -----------
-  function tryLoadLocalProjects() {
-    const cards = document.querySelectorAll(".project-card .pc-img img");
-    cards.forEach((img, i) => {
+  // ----------- Projects: render real photos with branded fallback -----------
+  const PROJECTS = [
+    {
+      cat: { ar: "إسبا & عناية", en: "Spa & Wellness" },
+      title: { ar: "جناح الاسترخاء الملكي", en: "Royal Wellness Suite" },
+      loc: { ar: "الرياض · 2024", en: "Riyadh · 2024" },
+      // Spa room interior with stones, candles
+      photo: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1600&q=85",
+      tone: "spa",
+      big: true
+    },
+    {
+      cat: { ar: "مطعم", en: "Restaurant" },
+      title: { ar: "مطعم البيت العتيق", en: "Al-Bait Al-Ateeq Restaurant" },
+      loc: { ar: "جدة · 2024", en: "Jeddah · 2024" },
+      // Dim restaurant interior
+      photo: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85",
+      tone: "restaurant"
+    },
+    {
+      cat: { ar: "كافيه", en: "Café" },
+      title: { ar: "كافيه الجادة", en: "Al-Jada Café" },
+      loc: { ar: "الرياض · 2024", en: "Riyadh · 2024" },
+      // Cafe interior
+      photo: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=85",
+      tone: "cafe"
+    },
+    {
+      cat: { ar: "صالون نسائي", en: "Women's Salon" },
+      title: { ar: "صالون لمسة الأناقة", en: "Lamsat Al-Anaqa Salon" },
+      loc: { ar: "الرياض · 2024", en: "Riyadh · 2024" },
+      // Salon interior (modern hair salon)
+      photo: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=85",
+      tone: "salon"
+    },
+    {
+      cat: { ar: "فندق", en: "Hotel" },
+      title: { ar: "جناح الضيافة الفاخر", en: "Luxury Hospitality Suite" },
+      loc: { ar: "الرياض · 2023", en: "Riyadh · 2023" },
+      // Hotel suite
+      photo: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=85",
+      tone: "hotel"
+    },
+    {
+      cat: { ar: "فيلا سكنية", en: "Residential Villa" },
+      title: { ar: "فيلا الواحة", en: "Al Waha Villa" },
+      loc: { ar: "الرياض · 2023", en: "Riyadh · 2023" },
+      // Luxury living room
+      photo: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=85",
+      tone: "villa"
+    }
+  ];
+
+  // SVG fallback — branded architectural concept render if photo fails
+  function fallbackSVG(tone, label) {
+    const palettes = {
+      spa:        { bg1: "#e8dfd2", bg2: "#c8b89a", line: "#8b7355", accent: "#b89968" },
+      restaurant: { bg1: "#1a1410", bg2: "#3a2820", line: "#8b6a4a", accent: "#b89968" },
+      cafe:       { bg1: "#3d2a1f", bg2: "#6b4a35", line: "#c9a978", accent: "#e6c89a" },
+      salon:      { bg1: "#f4e8e0", bg2: "#d4b5a0", line: "#a87858", accent: "#b89968" },
+      hotel:      { bg1: "#1e2a3a", bg2: "#3a4860", line: "#b89968", accent: "#c9a978" },
+      villa:      { bg1: "#e0dccc", bg2: "#b8b09a", line: "#6b6450", accent: "#b89968" }
+    };
+    const p = palettes[tone] || palettes.villa;
+    const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' preserveAspectRatio='xMidYMid slice'>
+      <defs>
+        <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+          <stop offset='0' stop-color='${p.bg1}'/>
+          <stop offset='1' stop-color='${p.bg2}'/>
+        </linearGradient>
+        <pattern id='grid' width='80' height='80' patternUnits='userSpaceOnUse'>
+          <path d='M80 0 L0 0 0 80' fill='none' stroke='${p.line}' stroke-width='.5' opacity='.25'/>
+        </pattern>
+      </defs>
+      <rect width='1200' height='800' fill='url(#g)'/>
+      <rect width='1200' height='800' fill='url(#grid)'/>
+      <g opacity='.4'>
+        <rect x='120' y='180' width='280' height='480' fill='none' stroke='${p.line}' stroke-width='1.5'/>
+        <rect x='460' y='280' width='340' height='380' fill='none' stroke='${p.line}' stroke-width='1.5'/>
+        <rect x='860' y='220' width='220' height='440' fill='none' stroke='${p.line}' stroke-width='1.5'/>
+        <circle cx='600' cy='400' r='180' fill='none' stroke='${p.accent}' stroke-width='1' opacity='.6'/>
+      </g>
+      <text x='600' y='420' text-anchor='middle' font-family='Georgia, serif' font-size='52' font-style='italic' fill='${p.line}' opacity='.85'>${label}</text>
+    </svg>`;
+    return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+  }
+
+  function renderProjects() {
+    const grid = document.getElementById("projectsGrid");
+    if (!grid) return;
+    const lang = document.documentElement.dataset.lang || "ar";
+    const byTxt = lang === "ar" ? "صمم ونفذ بواسطة لواء كونسبت" : "Designed & built by Liwa Concept";
+
+    grid.innerHTML = PROJECTS.map((p, i) => `
+      <a class="project-card ${p.big ? "big" : ""}" data-tone="${p.tone}" href="#contact">
+        <div class="pc-img" data-tone="${p.tone}">
+          <img src="${p.photo}" alt="Liwa Concept — ${p.title.en}" loading="lazy"
+               onerror="this.onerror=null;this.src='${fallbackSVG(p.tone, p.title.en)}';this.parentElement.classList.add('fallback');" />
+        </div>
+        <div class="pc-stamp">
+          <span class="pc-stamp-mark">Liwa<span>.</span></span>
+          <span class="pc-stamp-line"></span>
+          <span class="pc-stamp-sub">CONCEPT DESIGN</span>
+        </div>
+        <div class="pc-overlay">
+          <span class="pc-cat">${p.cat[lang]}</span>
+          <h3 class="pc-title">${p.title[lang]}</h3>
+          <span class="pc-loc">${p.loc[lang]}</span>
+          <span class="pc-credit">— ${byTxt}</span>
+        </div>
+      </a>
+    `).join("");
+
+    // Try to override with local project photos if available
+    document.querySelectorAll(".project-card .pc-img img").forEach((img, i) => {
       const test = new Image();
       const local = `assets/projects/project${i + 1}.jpg`;
       test.onload = () => { img.src = local; };
@@ -358,7 +469,15 @@
       test.src = local;
     });
   }
-  window.addEventListener("load", tryLoadLocalProjects);
+
+  renderProjects();
+
+  // Re-render when language changes
+  const _origApply = window.applyLanguage;
+  window.applyLanguage = function (lang) {
+    _origApply(lang);
+    renderProjects();
+  };
 
   // ----------- Auto-load client logos -----------
   // If you drop images into assets/clients/, name them logo1.png … logoN.png
