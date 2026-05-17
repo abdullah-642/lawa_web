@@ -1,0 +1,286 @@
+// ============================================
+// LIWA — Bilingual content (AR / EN)
+// ============================================
+
+const I18N = {
+  ar: {
+    "loader.sub": "CONCEPT DESIGN",
+    "nav.about": "من نحن",
+    "nav.expertise": "تخصصنا",
+    "nav.projects": "مشاريعنا",
+    "nav.method": "منهجيتنا",
+    "nav.vision": "رؤيتنا",
+    "nav.clients": "عملاؤنا",
+    "nav.contact": "تواصل",
+
+    "hero.since": "منذ 2017 · الرياض",
+    "hero.t1": "حيث تبدأ",
+    "hero.t2": "الفكرة",
+    "hero.t3": "وتكتمل التفاصيل.",
+    "hero.sub": "علامة تجارية متخصصة تابعة لشركة غرين زون، تُترجم الفكرة إلى فضاء استثنائي عبر تصميم دقيق وتنفيذ محكم — من الفكرة الأولى حتى تسليم المفتاح.",
+    "hero.cta1": "ابدأ مشروعك",
+    "hero.cta2": "استكشف خبراتنا",
+    "hero.s1": "سنوات خبرة",
+    "hero.s2": "مشروع منفذ",
+    "hero.s3": "عميل موثوق",
+    "hero.scroll": "انزل لاستكشاف المزيد",
+
+    "about.kicker": "01 — من نحن",
+    "about.title1": "هندسة الفضاء",
+    "about.title2": "بعين المصمم.",
+    "about.p1": "لواء كونسبت علامة تجارية متخصصة تابعة لشركة غرين زون، تعمل في مجال تصميم وتنفيذ المشاريع الداخلية التجارية والسكنية منذ عام 2017.",
+    "about.p2": "انطلقنا من قناعة راسخة: أن الفضاء الاستثنائي لا يكتفي بجماليات التصميم — بل يقوم على هندسة دقيقة، وتنفيذ محكم، واهتمام حقيقي بكل تفصيل.",
+    "about.p3": "نرافق عملاءنا في كل مرحلة، من الفكرة الأولى حتى لحظة تسليم المفتاح، بإشراف مباشر يضمن أن ما صُمِّم على الورق يُسلَّم على أرض الواقع بلا تنازلات.",
+    "about.card.label": "فلسفتنا",
+    "about.card.value": "الدقة قبل الزخرفة",
+
+    "exp.kicker": "02 — تخصصنا",
+    "exp.title1": "مشاريع تتطلب",
+    "exp.title2": "دقة لا تتسامح.",
+    "exp.lead": "نمتلك خبرة عميقة في تنفيذ المشاريع التي تتطلب دقة تقنية عالية ومواصفات صارمة.",
+    "exp.c1.t": "الاسترخاء والعناية",
+    "exp.c1.p": "إسبا، حمامات مغربية، وغرف بخار بتشطيبات وتقنيات متخصصة.",
+    "exp.c2.t": "المحلات والمطاعم",
+    "exp.c2.p": "هويات تجارية متكاملة تترجم الفكرة إلى تجربة مكانية متماسكة.",
+    "exp.c3.t": "المساحات السكنية الراقية",
+    "exp.c3.p": "منازل تعكس شخصية أصحابها بمواد مختارة وتفاصيل مصممة بعناية.",
+    "exp.c4.t": "التشطيبات الفندقية",
+    "exp.c4.p": "معايير ضيافة عالمية بتنفيذ يحاكي توقعات الفنادق الفاخرة.",
+
+    "meth.kicker": "03 — منهجيتنا",
+    "meth.title1": "لا نؤمن",
+    "meth.title2": "بالحلول الجاهزة.",
+    "meth.lead": "كل مشروع يبدأ بفهم حقيقي لطبيعة النشاط واحتياجات العميل، ثم يُترجم إلى تصميم وظيفي وجمالي في آن واحد — مدعوماً بمواصفات تقنية موثقة ومواد مختارة بعناية.",
+    "meth.s1.t": "الفهم",
+    "meth.s1.p": "جلسات استكشاف عميقة لفهم النشاط، الجمهور، والتطلعات.",
+    "meth.s2.t": "التصور",
+    "meth.s2.p": "رؤى مفاهيمية ولوحات مواد تترجم الهوية إلى لغة بصرية.",
+    "meth.s3.t": "التصميم",
+    "meth.s3.p": "رسومات تنفيذية ومواصفات تقنية موثقة لكل تفصيل.",
+    "meth.s4.t": "التنفيذ",
+    "meth.s4.p": "إشراف ميداني مباشر يضمن أن المنفّذ يطابق المرسوم بلا تنازل.",
+
+    "vis.kicker": "04 — رؤيتنا",
+    "vis.q1": "أن نكون",
+    "vis.q2": " المرجع الأول ",
+    "vis.q3": "في السوق السعودي لمن يبحث عن جهة تجمع بين الحس التصميمي والكفاءة التنفيذية — دون المساس بالتفاصيل.",
+
+    "prj.kicker": "— مشاريعنا",
+    "prj.title1": "من الفكرة",
+    "prj.title2": "إلى الواقع.",
+    "prj.lead": "مختارات من مشاريعنا التي تترجم فلسفتنا — حيث يلتقي التصميم بالتنفيذ بلا تنازل.",
+    "prj.c.spa": "إسبا & عناية",
+    "prj.c.rest": "مطعم",
+    "prj.c.res": "سكني راقي",
+    "prj.c.hosp": "فندقي",
+    "prj.c.retail": "محل تجاري",
+    "prj.p1.t": "جناح الاسترخاء الملكي",
+    "prj.p1.l": "الرياض · 2024",
+    "prj.p2.t": "مطعم البيت العتيق",
+    "prj.p2.l": "جدة · 2024",
+    "prj.p3.t": "فيلا الواحة",
+    "prj.p3.l": "الرياض · 2023",
+    "prj.p4.t": "جناح الضيافة الفاخر",
+    "prj.p4.l": "الرياض · 2023",
+    "prj.p5.t": "غرفة البخار الفاخرة",
+    "prj.p5.l": "الرياض · 2024",
+    "prj.p6.t": "معرض المفهوم الذهبي",
+    "prj.p6.l": "الخبر · 2024",
+    "prj.note": "* استبدل الصور بصور مشاريعك الفعلية من مجلد assets/projects/",
+
+    "cli.kicker": "05 — عملاؤنا",
+    "cli.title1": "ثقتهم",
+    "cli.title2": "مقياسنا الحقيقي.",
+    "cli.lead": "على مدار سنوات، شاركنا في بناء مساحات تعكس هوية أصحابها وتلبي احتياجاتهم بدقة.",
+    "cli.note": "* ضع شعارات عملائك داخل مجلد assets/clients/ وسأقوم بربطها تلقائياً.",
+
+    "con.kicker": "06 — تواصل",
+    "con.title1": "لنبدأ",
+    "con.title2": "مشروعك.",
+    "con.lead": "شاركنا فكرتك، ونحن نتكفل بترجمتها إلى فضاء استثنائي — بإشراف مباشر من الفكرة حتى تسليم المفتاح.",
+    "con.wa": "واتساب",
+    "con.em": "بريد",
+    "con.lo": "الموقع",
+    "con.lo.v": "الرياض، المملكة العربية السعودية",
+    "con.f.name": "الاسم",
+    "con.f.phone": "الجوال",
+    "con.f.type": "نوع المشروع",
+    "con.f.t1": "إسبا / منتجع صحي",
+    "con.f.t2": "حمام مغربي / غرفة بخار",
+    "con.f.t3": "صالون تجميل نسائي",
+    "con.f.t4": "صالون حلاقة رجالي",
+    "con.f.t5": "مركز عناية / تجميل",
+    "con.f.t6": "عيادة / مركز طبي",
+    "con.f.t7": "مطعم",
+    "con.f.t8": "كافيه / مقهى",
+    "con.f.t9": "محل تجاري / بوتيك",
+    "con.f.t10": "معرض / شوروم",
+    "con.f.t11": "مكتب / مساحة عمل",
+    "con.f.t12": "صالة رياضية / جيم",
+    "con.f.t13": "فيلا / قصر",
+    "con.f.t14": "شقة سكنية راقية",
+    "con.f.t15": "فندق / جناح فندقي",
+    "con.f.t16": "أخرى",
+    "con.f.msg": "تفاصيل المشروع",
+    "con.f.send": "إرسال عبر واتساب",
+
+    "foot.tag": "علامة تجارية تابعة لشركة غرين زون · منذ 2017",
+    "foot.nav": "روابط",
+    "foot.con": "تواصل",
+    "foot.rights": "جميع الحقوق محفوظة"
+  },
+
+  en: {
+    "loader.sub": "CONCEPT DESIGN",
+    "nav.about": "About",
+    "nav.expertise": "Expertise",
+    "nav.projects": "Projects",
+    "nav.method": "Process",
+    "nav.vision": "Vision",
+    "nav.clients": "Clients",
+    "nav.contact": "Contact",
+
+    "hero.since": "Since 2017 · Riyadh",
+    "hero.t1": "Where the",
+    "hero.t2": "idea",
+    "hero.t3": "becomes detail.",
+    "hero.sub": "A specialized brand under Green Zone Co., translating ideas into exceptional spaces through precise design and meticulous execution — from concept to key handover.",
+    "hero.cta1": "Start a project",
+    "hero.cta2": "Explore expertise",
+    "hero.s1": "Years of craft",
+    "hero.s2": "Projects delivered",
+    "hero.s3": "Trusted clients",
+    "hero.scroll": "Scroll to explore",
+
+    "about.kicker": "01 — About",
+    "about.title1": "Engineering space",
+    "about.title2": "with a designer's eye.",
+    "about.p1": "Liwa Concept is a specialized brand under Green Zone Co., operating in interior design and execution for commercial and residential projects since 2017.",
+    "about.p2": "We were founded on a firm conviction: that exceptional space is not limited to aesthetic beauty — it is built on precise engineering, meticulous execution, and a genuine attention to every detail.",
+    "about.p3": "We accompany our clients through every phase, from the first idea to the moment of key handover, with direct supervision ensuring that what was designed on paper is delivered on the ground without compromise.",
+    "about.card.label": "Philosophy",
+    "about.card.value": "Precision before ornament",
+
+    "exp.kicker": "02 — Expertise",
+    "exp.title1": "Projects that demand",
+    "exp.title2": "uncompromising precision.",
+    "exp.lead": "We have deep experience executing projects that require high technical precision and rigorous specifications.",
+    "exp.c1.t": "Wellness & Spa",
+    "exp.c1.p": "Spas, Moroccan baths, and steam rooms with specialized finishes and engineering.",
+    "exp.c2.t": "Retail & Restaurants",
+    "exp.c2.p": "Holistic commercial identities translated into coherent spatial experiences.",
+    "exp.c3.t": "Premium Residential",
+    "exp.c3.p": "Homes that reflect their owners through carefully selected materials and considered detail.",
+    "exp.c4.t": "Hospitality Finishes",
+    "exp.c4.p": "Global hospitality standards executed to match the expectations of luxury hotels.",
+
+    "meth.kicker": "03 — Process",
+    "meth.title1": "We don't believe in",
+    "meth.title2": "off-the-shelf solutions.",
+    "meth.lead": "Every project begins with a genuine understanding of the business and the client's needs, then translates into design that is both functional and beautiful — backed by documented technical specs and carefully chosen materials.",
+    "meth.s1.t": "Discover",
+    "meth.s1.p": "Deep discovery sessions to understand the business, audience, and aspirations.",
+    "meth.s2.t": "Envision",
+    "meth.s2.p": "Concept visuals and material boards translating identity into a visual language.",
+    "meth.s3.t": "Design",
+    "meth.s3.p": "Construction drawings and documented technical specifications for every detail.",
+    "meth.s4.t": "Execute",
+    "meth.s4.p": "Direct on-site supervision ensuring execution matches the drawings — no compromise.",
+
+    "vis.kicker": "04 — Vision",
+    "vis.q1": "To become",
+    "vis.q2": " the first reference ",
+    "vis.q3": "in the Saudi market for those seeking a partner that combines design sensibility with executional excellence — without compromising the details.",
+
+    "prj.kicker": "— Selected Work",
+    "prj.title1": "From concept",
+    "prj.title2": "to reality.",
+    "prj.lead": "Selected works that translate our philosophy — where design meets execution without compromise.",
+    "prj.c.spa": "Spa & Wellness",
+    "prj.c.rest": "Restaurant",
+    "prj.c.res": "Premium Residential",
+    "prj.c.hosp": "Hospitality",
+    "prj.c.retail": "Retail",
+    "prj.p1.t": "Royal Wellness Suite",
+    "prj.p1.l": "Riyadh · 2024",
+    "prj.p2.t": "Al-Bait Al-Ateeq Restaurant",
+    "prj.p2.l": "Jeddah · 2024",
+    "prj.p3.t": "Al Waha Villa",
+    "prj.p3.l": "Riyadh · 2023",
+    "prj.p4.t": "Luxury Hospitality Suite",
+    "prj.p4.l": "Riyadh · 2023",
+    "prj.p5.t": "Premium Steam Room",
+    "prj.p5.l": "Riyadh · 2024",
+    "prj.p6.t": "Golden Concept Boutique",
+    "prj.p6.l": "Al Khobar · 2024",
+    "prj.note": "* Replace these with your actual project photos from assets/projects/",
+
+    "cli.kicker": "05 — Clients",
+    "cli.title1": "Their trust is",
+    "cli.title2": "our true measure.",
+    "cli.lead": "Over the years, we have shared in building spaces that reflect their owners' identities and serve their needs with precision.",
+    "cli.note": "* Place your client logos inside the assets/clients/ folder and they will be linked automatically.",
+
+    "con.kicker": "06 — Contact",
+    "con.title1": "Let's start",
+    "con.title2": "your project.",
+    "con.lead": "Share your idea, we'll handle the rest — translating it into an exceptional space with direct supervision from concept to handover.",
+    "con.wa": "WhatsApp",
+    "con.em": "Email",
+    "con.lo": "Location",
+    "con.lo.v": "Riyadh, Kingdom of Saudi Arabia",
+    "con.f.name": "Name",
+    "con.f.phone": "Phone",
+    "con.f.type": "Project type",
+    "con.f.t1": "Spa / Wellness Resort",
+    "con.f.t2": "Moroccan Bath / Steam Room",
+    "con.f.t3": "Women's Beauty Salon",
+    "con.f.t4": "Men's Barbershop",
+    "con.f.t5": "Beauty / Wellness Center",
+    "con.f.t6": "Clinic / Medical Center",
+    "con.f.t7": "Restaurant",
+    "con.f.t8": "Café",
+    "con.f.t9": "Retail Shop / Boutique",
+    "con.f.t10": "Showroom",
+    "con.f.t11": "Office / Workspace",
+    "con.f.t12": "Gym / Fitness Center",
+    "con.f.t13": "Villa / Palace",
+    "con.f.t14": "Premium Apartment",
+    "con.f.t15": "Hotel / Hospitality Suite",
+    "con.f.t16": "Other",
+    "con.f.msg": "Project details",
+    "con.f.send": "Send via WhatsApp",
+
+    "foot.tag": "A brand under Green Zone Co. · Since 2017",
+    "foot.nav": "Links",
+    "foot.con": "Contact",
+    "foot.rights": "All rights reserved"
+  }
+};
+
+function applyLanguage(lang) {
+  const dict = I18N[lang];
+  if (!dict) return;
+
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.documentElement.dataset.lang = lang;
+
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+
+  // Title
+  document.title = lang === "ar"
+    ? "لواء كونسبت — Liwa Concept Design"
+    : "Liwa Concept Design — Interior architecture";
+
+  try { localStorage.setItem("liwa.lang", lang); } catch (e) {}
+}
+
+(function initLang() {
+  let saved = "ar";
+  try { saved = localStorage.getItem("liwa.lang") || "ar"; } catch (e) {}
+  applyLanguage(saved);
+})();

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta name="description" content="لواء كونسبت — تصميم وتنفيذ المشاريع الداخلية التجارية والسكنية بهندسة دقيقة وتفاصيل لا تساوم." />
+  <title>لواء كونسبت — Liwa Concept Design</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230a0a0a'/%3E%3Ctext x='50' y='68' text-anchor='middle' fill='white' font-family='serif' font-size='60' font-style='italic'%3EL%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">
+        <span class="pl-text">Liwa<span class="pl-dot">.</span></span>
+        <span class="pl-sub" data-i18n="loader.sub">CONCEPT DESIGN</span>
+      </div>
+      <div class="preloader-bar"><div class="preloader-bar-fill" id="preloaderBar"></div></div>
+      <div class="preloader-count" id="preloaderCount">0%</div>
+    </div>
+  </div>
+
+  <!-- 3D Canvas -->
+  <canvas id="bg3d"></canvas>
+
+  <!-- Noise overlay -->
+  <div class="noise"></div>
+
+  <!-- Header -->
+  <header class="site-header" id="siteHeader">
+    <a href="#hero" class="brand" id="brand">
+      <img class="brand-img" id="brandImg" src="assets/logo.png" alt="Liwa Concept" onerror="this.style.display='none';document.getElementById('brandFallback').style.display='flex';" />
+      <span class="brand-fallback" id="brandFallback">
+        <span class="brand-mark">
+          <svg viewBox="0 0 60 60" aria-hidden="true">
+            <path d="M10 12 L18 12 L18 48 L10 48 Z" fill="currentColor"/>
+            <path d="M30 12 L42 12 L34 48 L22 48 Z" fill="currentColor" opacity=".55"/>
+            <circle cx="50" cy="44" r="3" fill="currentColor"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
+          <span class="brand-sub">CONCEPT DESIGN</span>
+        </span>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <a href="#about" data-i18n="nav.about">من نحن</a>
+      <a href="#expertise" data-i18n="nav.expertise">تخصصنا</a>
+      <a href="#projects" data-i18n="nav.projects">مشاريعنا</a>
+      <a href="#method" data-i18n="nav.method">منهجيتنا</a>
+      <a href="#clients" data-i18n="nav.clients">عملاؤنا</a>
+      <a href="#contact" data-i18n="nav.contact">تواصل</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+        <span class="lang-en">EN</span>
+        <span class="lang-sep">/</span>
+        <span class="lang-ar">ع</span>
+      </button>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-grid">
+      <div class="hero-meta">
+        <span class="meta-line"></span>
+        <span class="meta-text" data-i18n="hero.since">منذ 2017 · الرياض</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line"><span data-i18n="hero.t1">حيث تبدأ</span></span>
+        <span class="line italic"><span data-i18n="hero.t2">الفكرة</span></span>
+        <span class="line"><span data-i18n="hero.t3">وتكتمل التفاصيل.</span></span>
+      </h1>
+
+      <p class="hero-sub" data-i18n="hero.sub">
+        علامة تجارية متخصصة تابعة لشركة غرين زون، تُترجم الفكرة إلى فضاء استثنائي عبر تصميم دقيق وتنفيذ محكم — من الفكرة الأولى حتى تسليم المفتاح.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">
+          <span data-i18n="hero.cta1">ابدأ مشروعك</span>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#expertise" class="btn btn-ghost">
+          <span data-i18n="hero.cta2">استكشف خبراتنا</span>
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num" data-count="8">8</span>
+          <span class="stat-label" data-i18n="hero.s1">سنوات خبرة</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="120">120</span>
+          <span class="stat-label" data-i18n="hero.s2">مشروع منفذ</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-count="40">40</span>
+          <span class="stat-label" data-i18n="hero.s3">عميل موثوق</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span data-i18n="hero.scroll">انزل لاستكشاف المزيد</span>
+      <span class="scroll-line"></span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="about.kicker">01 — من نحن</span>
+        <h2 class="section-title">
+          <span data-i18n="about.title1">هندسة الفضاء</span>
+          <span class="italic" data-i18n="about.title2">بعين المصمم.</span>
+        </h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p data-i18n="about.p1">
+            لواء كونسبت علامة تجارية متخصصة تابعة لشركة غرين زون، تعمل في مجال تصميم وتنفيذ المشاريع الداخلية التجارية والسكنية منذ عام 2017.
+          </p>
+          <p data-i18n="about.p2">
+            انطلقنا من قناعة راسخة: أن الفضاء الاستثنائي لا يكتفي بجماليات التصميم — بل يقوم على هندسة دقيقة، وتنفيذ محكم، واهتمام حقيقي بكل تفصيل.
+          </p>
+          <p data-i18n="about.p3">
+            نرافق عملاءنا في كل مرحلة، من الفكرة الأولى حتى لحظة تسليم المفتاح، بإشراف مباشر يضمن أن ما صُمِّم على الورق يُسلَّم على أرض الواقع بلا تنازلات.
+          </p>
+        </div>
+
+        <div class="about-visual">
+          <div class="about-card">
+            <div class="ac-3d" id="aboutCube"></div>
+            <div class="ac-meta">
+              <span class="ac-label" data-i18n="about.card.label">فلسفتنا</span>
+              <span class="ac-value" data-i18n="about.card.value">الدقة قبل الزخرفة</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERTISE -->
+  <section class="section expertise" id="expertise">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="exp.kicker">02 — تخصصنا</span>
+        <h2 class="section-title">
+          <span data-i18n="exp.title1">مشاريع تتطلب</span>
+          <span class="italic" data-i18n="exp.title2">دقة لا تتسامح.</span>
+        </h2>
+        <p class="section-lead" data-i18n="exp.lead">
+          نمتلك خبرة عميقة في تنفيذ المشاريع التي تتطلب دقة تقنية عالية ومواصفات صارمة.
+        </p>
+      </div>
+
+      <div class="exp-grid">
+        <article class="exp-card" data-tilt>
+          <div class="exp-num">01</div>
+          <div class="exp-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M12 44c0-12 8-22 20-22s20 10 20 22"/>
+              <path d="M20 44c0-8 5-14 12-14s12 6 12 14"/>
+              <circle cx="32" cy="14" r="3"/>
+              <path d="M8 52h48"/>
+            </svg>
+          </div>
+          <h3 data-i18n="exp.c1.t">الاسترخاء والعناية</h3>
+          <p data-i18n="exp.c1.p">إسبا، حمامات مغربية، وغرف بخار بتشطيبات وتقنيات متخصصة.</p>
+        </article>
+
+        <article class="exp-card" data-tilt>
+          <div class="exp-num">02</div>
+          <div class="exp-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M8 24l4-10h40l4 10"/>
+              <path d="M8 24h48v28H8z"/>
+              <path d="M20 52V36h10v16M36 36h10v8h-10z"/>
+            </svg>
+          </div>
+          <h3 data-i18n="exp.c2.t">المحلات والمطاعم</h3>
+          <p data-i18n="exp.c2.p">هويات تجارية متكاملة تترجم الفكرة إلى تجربة مكانية متماسكة.</p>
+        </article>
+
+        <article class="exp-card" data-tilt>
+          <div class="exp-num">03</div>
+          <div class="exp-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M8 30L32 10l24 20"/>
+              <path d="M14 28v26h36V28"/>
+              <path d="M26 54V38h12v16"/>
+            </svg>
+          </div>
+          <h3 data-i18n="exp.c3.t">المساحات السكنية الراقية</h3>
+          <p data-i18n="exp.c3.p">منازل تعكس شخصية أصحابها بمواد مختارة وتفاصيل مصممة بعناية.</p>
+        </article>
+
+        <article class="exp-card" data-tilt>
+          <div class="exp-num">04</div>
+          <div class="exp-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M8 54V18l24-8 24 8v36"/>
+              <path d="M20 54V32h8v22M36 54V32h8v22"/>
+              <path d="M8 54h48"/>
+            </svg>
+          </div>
+          <h3 data-i18n="exp.c4.t">التشطيبات الفندقية</h3>
+          <p data-i18n="exp.c4.p">معايير ضيافة عالمية بتنفيذ يحاكي توقعات الفنادق الفاخرة.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section class="section method" id="method">
+    <div class="container">
+      <div class="section-head">
+        <span class="section-kicker" data-i18n="meth.kicker">03 — منهجيتنا</span>
+        <h2 class="section-title">
+          <span data-i18n="meth.title1">لا نؤمن</span>
+          <span class="italic" data-i18n="meth.title2">بالحلول الجاهزة.</span>
+        </h2>
+        <p class="section-lead" data-i18n="meth.lead">
+          كل مشروع يبدأ بفهم حقيقي لطبيعة النشاط واحتياجات العميل، ثم يُترجم إلى تصميم وظيفي وجمالي في آن واحد — مدعوماً بمواصفات تقنية موثقة ومواد مختارة بعناية.
+        </p>
+      </div>
+
+      <ol class="method-steps">
+        <li class="step">
+          <span class="step-index">/01</span>
+          <h4 data-i18n="meth.s1.t">الفهم</h4>
+          <p data-i18n="meth.s1.p">جلسات استكشاف عميقة لفهم النشاط، الجمهور، والتطلعات.</p>
+        </li>
+        <li class="step">
+          <span class="step-index">/02</span>
+          <h4 data-i18n="meth.s2.t">التصور</h4>
+          <p data-i18n="meth.s2.p">رؤى مفاهيمية ولوحات مواد تترجم الهوية إلى لغة بصرية.</p>
+        </li>
+        <li class="step">
+          <span class="step-index">/03</span>
+          <h4 data-i18n="meth.s3.t">التصميم</h4>
+          <p data-i18n="meth.s3.p">رسومات تنفيذية ومواصفات تقنية موثقة لكل تفصيل.</p>
+        </li>
+        <li class="step">
+          <span class="step-index">/04</span>
+          <h4 data-i18n="meth.s4.t">التنفيذ</h4>
+          <p data-i18n="meth.s4.p">إشراف ميداني مباشر يضمن أن المنفّذ يطابق المرسوم بلا تنازل.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="section vision" id="vision">
+    <div class="container">
+      <div class="vision-box">
+        <span class="section-kicker" data-i18n="vis.kicker">04 — رؤيتنا</span>
+        <blockquote class="vision-quote">
+          <span data-i18n="vis.q1">أن نكون</span>
+          <span class="italic" data-i18n="vis.q2"> المرجع الأول </span>
+          <span data-i18n="vis.q3">في السوق السعودي لمن يبحث عن جهة تجمع بين الحس التصميمي والكفاءة التنفيذية — دون المساس بالتفاصيل.</span>
+        </blockquote>
+        <div class="vision-sign">— Liwa Concept Design</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS / PORTFOLIO -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section-head center">
+        <span class="section-kicker" data-i18n="prj.kicker">— مشاريعنا</span>
+        <h2 class="section-title">
+          <span data-i18n="prj.title1">من الفكرة</span>
+          <span class="italic" data-i18n="prj.title2">إلى الواقع.</span>
+        </h2>
+        <p class="section-lead" data-i18n="prj.lead">
+          مختارات من مشاريعنا التي تترجم فلسفتنا — حيث يلتقي التصميم بالتنفيذ بلا تنازل.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <a class="project-card big" data-cat="spa" href="#contact">
+          <div class="pc-img">
+            <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1400&q=80" alt="Spa Project" loading="lazy" />
+          </div>
+          <div class="pc-overlay">
+            <span class="pc-cat" data-i18n="prj.c.spa">إسبا & عناية</span>
+            <h3 class="pc-title" data-i18n="prj.p1.t">جناح الاسترخاء الملكي</h3>
+            <span class="pc-loc" data-i18n="prj.p1.l">الرياض · 2024</span>
+          </div>
+          <span class="pc-watermark">
+            <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
+          </span>
+        </a>
+
+        <a class="project-card" data-cat="restaurant" href="#contact">
+          <div class="pc-img">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" alt="Restaurant Project" loading="lazy" />
+          </div>
+          <div class="pc-overlay">
+            <span class="pc-cat" data-i18n="prj.c.rest">مطعم</span>
+            <h3 class="pc-title" data-i18n="prj.p2.t">مطعم البيت العتيق</h3>
+            <span class="pc-loc" data-i18n="prj.p2.l">جدة · 2024</span>
+          </div>
+          <span class="pc-watermark">
+            <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
+          </span>
+        </a>
+
+        <a class="project-card" data-cat="residential" href="#contact">
+          <div class="pc-img">
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=80" alt="Residential Project" loading="lazy" />
+          </div>
+          <div class="pc-overlay">
+            <span class="pc-cat" data-i18n="prj.c.res">سكني راقي</span>
+            <h3 class="pc-title" data-i18n="prj.p3.t">فيلا الواحة</h3>
+            <span class="pc-loc" data-i18n="prj.p3.l">الرياض · 2023</span>
+          </div>
+          <span class="pc-watermark">
+            <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
+          </span>
+        </a>
+
+        <a class="project-card" data-cat="hospitality" href="#contact">
+          <div class="pc-img">
+            <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1000&q=80" alt="Hospitality Project" loading="lazy" />
+          </div>
+          <div class="pc-overlay">
+            <span class="pc-cat" data-i18n="prj.c.hosp">فندقي</span>
+            <h3 class="pc-title" data-i18n="prj.p4.t">جناح الضيافة الفاخر</h3>
+            <span class="pc-loc" data-i18n="prj.p4.l">الرياض · 2023</span>
+          </div>
+          <span class="pc-watermark">
+            <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
+          </span>
+        </a>
+
+        <a class="project-card" data-cat="spa" href="#contact">
+          <div class="pc-img">
+            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80" alt="Spa Steam Project" loading="lazy" />
+          </div>
+          <div class="pc-overlay">
+            <span class="pc-cat" data-i18n="prj.c.spa">إسبا & عناية</span>
+            <h3 class="pc-title" data-i18n="prj.p5.t">غرفة البخار الفاخرة</h3>
+            <span class="pc-loc" data-i18n="prj.p5.l">الرياض · 2024</span>
+          </div>
+          <span class="pc-watermark">
+            <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
+          </span>
+        </a>
+
+        <a class="project-card big" data-cat="retail" href="#contact">
+          <div class="pc-img">
+            <img src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?auto=format&fit=crop&w=1400&q=80" alt="Retail Project" loading="lazy" />
+          </div>
+          <div class="pc-overlay">
+            <span class="pc-cat" data-i18n="prj.c.retail">محل تجاري</span>
+            <h3 class="pc-title" data-i18n="prj.p6.t">معرض المفهوم الذهبي</h3>
+            <span class="pc-loc" data-i18n="prj.p6.l">الخبر · 2024</span>
+          </div>
+          <span class="pc-watermark">
+            <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
+          </span>
+        </a>
+      </div>
+
+      <p class="clients-note" data-i18n="prj.note">* استبدل الصور بصور مشاريعك الفعلية من مجلد <code>assets/projects/</code></p>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <section class="section clients" id="clients">
+    <div class="container">
+      <div class="section-head center">
+        <span class="section-kicker" data-i18n="cli.kicker">05 — عملاؤنا</span>
+        <h2 class="section-title">
+          <span data-i18n="cli.title1">ثقتهم</span>
+          <span class="italic" data-i18n="cli.title2">مقياسنا الحقيقي.</span>
+        </h2>
+        <p class="section-lead" data-i18n="cli.lead">
+          على مدار سنوات، شاركنا في بناء مساحات تعكس هوية أصحابها وتلبي احتياجاتهم بدقة.
+        </p>
+      </div>
+
+      <div class="clients-grid" id="clientsGrid">
+        <!-- Placeholder slots — replace src with client logos -->
+        <div class="client-slot"><span>Client Logo</span></div>
+        <div class="client-slot"><span>Client Logo</span></div>
+        <div class="client-slot"><span>Client Logo</span></div>
+        <div class="client-slot"><span>Client Logo</span></div>
+        <div class="client-slot"><span>Client Logo</span></div>
+        <div class="client-slot"><span>Client Logo</span></div>
+        <div class="client-slot"><span>Client Logo</span></div>
+        <div class="client-slot"><span>Client Logo</span></div>
+      </div>
+
+      <p class="clients-note" data-i18n="cli.note">* ضع شعارات عملائك داخل مجلد <code>assets/clients/</code> وسأقوم بربطها تلقائياً.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <span class="section-kicker" data-i18n="con.kicker">06 — تواصل</span>
+          <h2 class="section-title">
+            <span data-i18n="con.title1">لنبدأ</span>
+            <span class="italic" data-i18n="con.title2">مشروعك.</span>
+          </h2>
+          <p class="section-lead" data-i18n="con.lead">
+            شاركنا فكرتك، ونحن نتكفل بترجمتها إلى فضاء استثنائي — بإشراف مباشر من الفكرة حتى تسليم المفتاح.
+          </p>
+
+          <div class="contact-info">
+            <a href="https://wa.me/966544668836" target="_blank" rel="noopener" class="contact-line">
+              <span class="cl-label" data-i18n="con.wa">واتساب</span>
+              <span class="cl-value" dir="ltr">0544668836</span>
+            </a>
+            <a href="mailto:info@liwaconcept.com" class="contact-line">
+              <span class="cl-label" data-i18n="con.em">بريد</span>
+              <span class="cl-value">info@liwaconcept.com</span>
+            </a>
+            <div class="contact-line">
+              <span class="cl-label" data-i18n="con.lo">الموقع</span>
+              <span class="cl-value" data-i18n="con.lo.v">الرياض، المملكة العربية السعودية</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm" onsubmit="return sendWhatsApp(event)">
+          <div class="field">
+            <label data-i18n="con.f.name">الاسم</label>
+            <input type="text" id="f-name" required />
+          </div>
+          <div class="field">
+            <label data-i18n="con.f.phone">الجوال</label>
+            <input type="tel" id="f-phone" required />
+          </div>
+          <div class="field">
+            <label data-i18n="con.f.type">نوع المشروع</label>
+            <select id="f-type">
+              <option data-i18n="con.f.t1">إسبا / منتجع صحي</option>
+              <option data-i18n="con.f.t2">حمام مغربي / غرفة بخار</option>
+              <option data-i18n="con.f.t3">صالون تجميل نسائي</option>
+              <option data-i18n="con.f.t4">صالون حلاقة رجالي</option>
+              <option data-i18n="con.f.t5">مركز عناية / تجميل</option>
+              <option data-i18n="con.f.t6">عيادة / مركز طبي</option>
+              <option data-i18n="con.f.t7">مطعم</option>
+              <option data-i18n="con.f.t8">كافيه / مقهى</option>
+              <option data-i18n="con.f.t9">محل تجاري / بوتيك</option>
+              <option data-i18n="con.f.t10">معرض / شوروم</option>
+              <option data-i18n="con.f.t11">مكتب / مساحة عمل</option>
+              <option data-i18n="con.f.t12">صالة رياضية / جيم</option>
+              <option data-i18n="con.f.t13">فيلا / قصر</option>
+              <option data-i18n="con.f.t14">شقة سكنية راقية</option>
+              <option data-i18n="con.f.t15">فندق / جناح فندقي</option>
+              <option data-i18n="con.f.t16">أخرى</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-i18n="con.f.msg">تفاصيل المشروع</label>
+            <textarea id="f-msg" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            <span data-i18n="con.f.send">إرسال عبر واتساب</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4 3 11l7 2 2 7z" opacity=".8"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="foot-brand">
+        <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
+        <span class="brand-sub">CONCEPT DESIGN</span>
+        <p data-i18n="foot.tag">علامة تجارية تابعة لشركة غرين زون · منذ 2017</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <span class="foot-h" data-i18n="foot.nav">روابط</span>
+          <a href="#about" data-i18n="nav.about">من نحن</a>
+          <a href="#expertise" data-i18n="nav.expertise">تخصصنا</a>
+          <a href="#method" data-i18n="nav.method">منهجيتنا</a>
+          <a href="#contact" data-i18n="nav.contact">تواصل</a>
+        </div>
+        <div class="foot-col">
+          <span class="foot-h" data-i18n="foot.con">تواصل</span>
+          <a href="https://wa.me/966544668836" target="_blank" rel="noopener" dir="ltr" style="display:inline-block">0544668836</a>
+          <a href="mailto:info@liwaconcept.com">info@liwaconcept.com</a>
+          <span data-i18n="con.lo.v">الرياض، المملكة العربية السعودية</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Liwa Concept Design — <span data-i18n="foot.rights">جميع الحقوق محفوظة</span></span>
+    </div>
+  </footer>
+
+  <!-- WhatsApp floating -->
+  <a href="https://wa.me/966544668836?text=%D8%A3%D9%87%D9%84%D8%A7%D9%8B%2C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D9%85%D8%B4%D8%B1%D9%88%D8%B9" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true">
+      <path d="M16 3C9 3 3.5 8.5 3.5 15.4c0 2.5.7 4.8 1.9 6.8L3 29l7-1.8a13 13 0 0 0 6 1.5c7 0 12.5-5.5 12.5-12.4S23 3 16 3zm0 22.5c-1.9 0-3.7-.5-5.3-1.4l-.4-.2-4.2 1.1 1.1-4-.2-.4a10.3 10.3 0 0 1-1.6-5.4C5.4 9.6 10.2 5 16 5s10.6 4.6 10.6 10.3-4.8 10.2-10.6 10.2zm5.8-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.2-.7-1.7-1-2.4-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5 0 1.5 1 2.9 1.2 3.1.2.2 2.1 3.2 5.1 4.4 2.5 1 3 .8 3.6.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.2-.1-.4-.2-.7-.4z"/>
+    </svg>
+    <span class="wa-pulse"></span>
+  </a>
+
+  <!-- Three.js + GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
