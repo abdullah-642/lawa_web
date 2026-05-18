@@ -11,6 +11,7 @@ const I18N = {
     "nav.method": "منهجيتنا",
     "nav.vision": "رؤيتنا",
     "nav.clients": "عملاؤنا",
+    "nav.blog": "المدونة",
     "nav.contact": "تواصل",
 
     "hero.since": "منذ 2017 · الرياض",
@@ -139,6 +140,7 @@ const I18N = {
     "nav.method": "Process",
     "nav.vision": "Vision",
     "nav.clients": "Clients",
+    "nav.blog": "Blog",
     "nav.contact": "Contact",
 
     "hero.since": "Since 2017 · Riyadh",

@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /assets/projects/
+Disallow: /assets/clients/
+
+# Sitemap location
+Sitemap: https://liwaconcept.com/sitemap.xml
+
+# Crawl-delay for polite bots
+User-agent: Bingbot
+Crawl-delay: 1
+
+User-agent: Googlebot
+Crawl-delay: 0
