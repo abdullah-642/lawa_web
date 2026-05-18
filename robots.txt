@@ -4,7 +4,7 @@ Disallow: /assets/projects/
 Disallow: /assets/clients/
 
 # Sitemap location
-Sitemap: https://liwaconcept.com/sitemap.xml
+Sitemap: https://www.liwa1.com/sitemap.xml
 
 # Crawl-delay for polite bots
 User-agent: Bingbot
