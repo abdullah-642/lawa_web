@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>لوحة التحكم | نظام لواء كونسبت CRM</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600&family=Tajawal:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="crm.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+</head>
+<body class="crm-body">
+
+  <!-- ===== Sidebar ===== -->
+  <aside class="crm-sidebar" id="crmSidebar">
+    <div class="cs-brand">
+      <img src="assets/logo.png" alt="Liwa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <span class="cs-fallback">
+        <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
+        <span class="brand-sub">CONCEPT DESIGN</span>
+      </span>
+    </div>
+
+    <nav class="cs-nav">
+      <span class="cs-section-label">القائمة الرئيسية</span>
+      <a href="#dashboard" data-view="dashboard" class="cs-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+        <span>لوحة التحكم</span>
+      </a>
+      <a href="#requests" data-view="requests" class="cs-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16v4H4zM4 12h16v4H4zM4 20h10"/></svg>
+        <span>استقبال الطلبات</span>
+        <span class="cs-badge" id="badgeRequests">0</span>
+      </a>
+      <a href="#customers" data-view="customers" class="cs-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 22c0-4 4-7 8-7s8 3 8 7"/></svg>
+        <span>العملاء</span>
+      </a>
+      <a href="#projects" data-view="projects" class="cs-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18v14H3zM8 7V3h8v4"/></svg>
+        <span>المشاريع</span>
+      </a>
+      <a href="#quotes" data-view="quotes" class="cs-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 2h12v20l-6-3-6 3z"/></svg>
+        <span>عروض الأسعار</span>
+      </a>
+      <a href="#tasks" data-view="tasks" class="cs-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l3 3 8-8M3 12a9 9 0 1018 0 9 9 0 00-18 0"/></svg>
+        <span>المهام</span>
+      </a>
+
+      <span class="cs-section-label">التحليلات</span>
+      <a href="#reports" data-view="reports" class="cs-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 20h18M6 16V8m4 8V4m4 12v-6m4 6V10"/></svg>
+        <span>التقارير</span>
+      </a>
+
+      <span class="cs-section-label">النظام</span>
+      <a href="#settings" data-view="settings" class="cs-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09c0 .66.39 1.26 1 1.51a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.25.61.85 1 1.51 1H21a2 2 0 010 4h-.09c-.66 0-1.26.39-1.51 1z"/></svg>
+        <span>الإعدادات</span>
+      </a>
+    </nav>
+
+    <div class="cs-foot">
+      <div class="cs-user">
+        <div class="cs-avatar" id="userAvatar">A</div>
+        <div class="cs-user-info">
+          <span class="cs-user-name" id="userName">المسؤول</span>
+          <span class="cs-user-role" id="userRole">Admin</span>
+        </div>
+      </div>
+      <button class="cs-logout" id="logoutBtn" title="تسجيل الخروج">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===== Main area ===== -->
+  <main class="crm-main">
+    <!-- Top bar -->
+    <header class="crm-topbar">
+      <button class="crm-menu" id="crmMenuBtn"><span></span><span></span><span></span></button>
+      <div class="tb-breadcrumb">
+        <span class="tb-section" id="tbSection">لوحة التحكم</span>
+        <span class="tb-sub" id="tbSub">نظرة عامة على نشاط الشركة</span>
+      </div>
+      <div class="tb-actions">
+        <div class="tb-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" placeholder="بحث سريع..." id="globalSearch" />
+        </div>
+        <button class="tb-icon" title="الإشعارات">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8a6 6 0 1112 0v6l2 3H4l2-3V8M10 21a2 2 0 004 0"/></svg>
+          <span class="tb-dot"></span>
+        </button>
+        <a href="index.html" class="tb-icon" title="عرض الموقع" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- View container — populated by crm.js -->
+    <section class="crm-view" id="crmView"></section>
+  </main>
+
+  <!-- Modal -->
+  <div class="crm-modal" id="crmModal" hidden>
+    <div class="cm-overlay" data-close></div>
+    <div class="cm-card">
+      <button class="cm-close" data-close>×</button>
+      <div class="cm-body" id="cmBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="crm-toast" id="crmToast" hidden></div>
+
+  <script src="crm.js"></script>
+  <script>
+    (function () {
+      const user = CRM.auth.current();
+      if (!user) {
+        window.location.href = "crm-login.html";
+        return;
+      }
+
+      // Personalize header
+      document.getElementById("userName").textContent = user.name;
+      document.getElementById("userRole").textContent = user.role;
+      document.getElementById("userAvatar").textContent = user.name.charAt(0).toUpperCase();
+
+      // Logout
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        if (confirm("هل تريد تسجيل الخروج؟")) {
+          CRM.auth.logout();
+          window.location.href = "crm-login.html";
+        }
+      });
+
+      // Sidebar toggle on mobile
+      document.getElementById("crmMenuBtn").addEventListener("click", () => {
+        document.getElementById("crmSidebar").classList.toggle("open");
+      });
+
+      // Boot router
+      CRM.app.init();
+    })();
+  </script>
+</body>
+</html>

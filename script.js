@@ -100,7 +100,7 @@
     }
   }
 
-  // ----------- WhatsApp form -----------
+  // ----------- Contact form: save to CRM intake -----------
   window.sendWhatsApp = function (e) {
     e.preventDefault();
     const lang = document.documentElement.dataset.lang;
@@ -109,12 +109,34 @@
     const type = document.getElementById("f-type").value;
     const msg = document.getElementById("f-msg").value.trim();
 
-    const text = lang === "ar"
-      ? `أهلاً، أنا ${name}\nجوالي: ${phone}\nنوع المشروع: ${type}\n\nتفاصيل المشروع:\n${msg}`
-      : `Hello, I'm ${name}\nPhone: ${phone}\nProject type: ${type}\n\nProject details:\n${msg}`;
+    // Save to CRM intake (browser localStorage). If CRM script not present, fall back to WhatsApp.
+    if (window.CRM && CRM.intake) {
+      CRM.intake.submit({ name, phone, type, message: msg, source: "نموذج الموقع" });
 
-    const url = `https://wa.me/966544668836?text=${encodeURIComponent(text)}`;
-    window.open(url, "_blank");
+      // Show success state in the form
+      const form = document.getElementById("contactForm");
+      const successHTML = lang === "ar"
+        ? `<div class="form-success">
+             <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+             <h3>تم استلام طلبك بنجاح</h3>
+             <p>شكراً ${name}، فريق لواء كونسبت سيتواصل معك على الرقم ${phone} خلال 24 ساعة.</p>
+             <button type="button" class="btn btn-line" onclick="location.reload()">إرسال طلب آخر</button>
+           </div>`
+        : `<div class="form-success">
+             <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+             <h3>Your request was received</h3>
+             <p>Thanks ${name}, the Liwa Concept team will reach you on ${phone} within 24 hours.</p>
+             <button type="button" class="btn btn-line" onclick="location.reload()">Send another</button>
+           </div>`;
+      form.innerHTML = successHTML;
+    } else {
+      // Fallback: WhatsApp
+      const text = lang === "ar"
+        ? `أهلاً، أنا ${name}\nجوالي: ${phone}\nنوع المشروع: ${type}\n\nتفاصيل المشروع:\n${msg}`
+        : `Hello, I'm ${name}\nPhone: ${phone}\nProject type: ${type}\n\nProject details:\n${msg}`;
+      const url = `https://wa.me/966544668836?text=${encodeURIComponent(text)}`;
+      window.open(url, "_blank");
+    }
     return false;
   };
 
