@@ -104,6 +104,9 @@
     </main>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="supabase-config.js"></script>
+  <script src="db.js"></script>
   <script src="crm.js"></script>
   <script>
     (function () {
@@ -123,19 +126,28 @@
         alert("للاستعادة، يرجى التواصل مع مدير النظام.\nThe default password is: Liwa@2026");
       });
 
-      document.getElementById("loginForm").addEventListener("submit", (e) => {
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
         e.preventDefault();
         const u = document.getElementById("username").value.trim();
         const p = document.getElementById("password").value;
         const err = document.getElementById("loginError");
+        const btn = document.querySelector(".btn-login");
+        btn.disabled = true; btn.style.opacity = ".6";
 
-        const ok = CRM.auth.login(u, p);
-        if (ok) {
-          err.hidden = true;
-          window.location.href = "crm.html";
-        } else {
+        try {
+          const ok = await CRM.auth.login(u, p);
+          if (ok) {
+            err.hidden = true;
+            window.location.href = "crm.html";
+          } else {
+            err.hidden = false;
+            err.textContent = "بيانات الدخول غير صحيحة. حاول مرة أخرى.";
+          }
+        } catch (ex) {
           err.hidden = false;
-          err.textContent = "بيانات الدخول غير صحيحة. حاول مرة أخرى.";
+          err.textContent = "تعذّر الاتصال بالخادم. " + (ex && ex.message ? ex.message : "");
+        } finally {
+          btn.disabled = false; btn.style.opacity = "1";
         }
       });
     })();

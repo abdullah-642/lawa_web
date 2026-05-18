@@ -42,21 +42,32 @@ window.CRM = (function () {
   }
   seedIfEmpty();
 
-  // ========== Auth ==========
+  // ========== Auth (delegates to DB layer if available) ==========
   const auth = {
-    login(u, p) {
+    async login(u, p) {
+      if (window.DB && window.DB.login) {
+        const sess = await window.DB.login(u, p);
+        return !!sess;
+      }
+      // Local fallback
       const users = store.get("users", []);
       const found = users.find(x => x.username === u && x.password === p);
       if (found) {
-        const session = { id: found.id, username: found.username, name: found.name, role: found.role, ts: Date.now() };
-        store.set("session", session);
+        store.set("session", { id: found.id, username: found.username, name: found.name, role: found.role, ts: Date.now() });
         return true;
       }
       return false;
     },
-    logout() { try { localStorage.removeItem(NS + "session"); } catch {} },
-    current() { return store.get("session"); },
-    changePassword(oldP, newP) {
+    logout() {
+      if (window.DB && window.DB.logout) window.DB.logout();
+      try { localStorage.removeItem(NS + "session"); } catch {}
+    },
+    current() {
+      if (window.DB && window.DB.currentSession) return window.DB.currentSession();
+      return store.get("session");
+    },
+    async changePassword(oldP, newP) {
+      if (window.DB && window.DB.changePassword) return await window.DB.changePassword(oldP, newP);
       const sess = auth.current();
       if (!sess) return false;
       const users = store.get("users", []);
@@ -67,6 +78,21 @@ window.CRM = (function () {
       return true;
     }
   };
+
+  // ========== DB bridge (Supabase via window.DB if available) ==========
+  async function dbUpsert(table, item) {
+    if (window.DB && window.DB.upsert) return await window.DB.upsert(table, item);
+    const arr = store.get(table, []);
+    const idx = arr.findIndex(x => x.id === item.id);
+    if (idx >= 0) arr[idx] = { ...arr[idx], ...item }; else arr.unshift(item);
+    store.set(table, arr);
+    return { ok: true, offline: true };
+  }
+  async function dbRemove(table, id) {
+    if (window.DB && window.DB.remove) return await window.DB.remove(table, id);
+    store.set(table, store.get(table, []).filter(x => x.id !== id));
+    return { ok: true, offline: true };
+  }
 
   // ========== Helpers ==========
   const fmtDate = (iso) => {
@@ -625,7 +651,7 @@ window.CRM = (function () {
 
   // ========== App / Router ==========
   const app = {
-    init() {
+    async init() {
       window.addEventListener("hashchange", () => app.render());
       document.querySelectorAll("[data-view]").forEach(a => {
         a.addEventListener("click", (e) => {
@@ -633,6 +659,18 @@ window.CRM = (function () {
           app.go(a.dataset.view);
         });
       });
+
+      // Pull latest data from Supabase
+      if (window.DB && window.DB.pullAll) {
+        try {
+          if (window.DB.ready) {
+            const view = document.getElementById("crmView");
+            if (view) view.innerHTML = `<div class="empty"><h4>جاري المزامنة مع السحابة...</h4></div>`;
+          }
+          await window.DB.pullAll();
+        } catch (e) { console.warn("[CRM] sync failed:", e); }
+      }
+
       app.render();
     },
 
@@ -701,40 +739,37 @@ window.CRM = (function () {
       `);
     },
 
-    saveRequestStatus(id) {
+    async saveRequestStatus(id) {
       const reqs = store.get("requests", []);
       const r = reqs.find(x => x.id === id);
       if (!r) return;
       r.status = document.getElementById("reqStatus").value;
-      store.set("requests", reqs);
-      closeModal();
-      app.render();
+      await dbUpsert("requests", r);
+      closeModal(); app.render();
       toast("تم تحديث الحالة");
     },
 
-    deleteRequest(id) {
+    async deleteRequest(id) {
       if (!confirm("هل تريد حذف هذا الطلب؟")) return;
-      const reqs = store.get("requests", []).filter(r => r.id !== id);
-      store.set("requests", reqs);
+      await dbRemove("requests", id);
       app.render();
       toast("تم الحذف");
     },
 
-    convertRequest(id) {
+    async convertRequest(id) {
       const reqs = store.get("requests", []);
       const r = reqs.find(x => x.id === id);
       if (!r) return;
       const customers = store.get("customers", []);
       const exists = customers.find(c => c.phone === r.phone);
       if (!exists) {
-        customers.push({
+        await dbUpsert("customers", {
           id: uid(), name: r.name, phone: r.phone, email: "",
           source: "نموذج الموقع", date: new Date().toISOString(), requestId: r.id
         });
-        store.set("customers", customers);
       }
       r.status = "converted";
-      store.set("requests", reqs);
+      await dbUpsert("requests", r);
       closeModal();
       app.render();
       toast("تم تحويل الطلب إلى عميل");
@@ -761,10 +796,9 @@ window.CRM = (function () {
       `);
     },
 
-    saveManualRequest(e) {
+    async saveManualRequest(e) {
       e.preventDefault();
-      const reqs = store.get("requests", []);
-      reqs.push({
+      await dbUpsert("requests", {
         id: uid(),
         name: document.getElementById("mr-name").value.trim(),
         phone: document.getElementById("mr-phone").value.trim(),
@@ -774,23 +808,19 @@ window.CRM = (function () {
         date: new Date().toISOString(),
         source: "يدوي"
       });
-      store.set("requests", reqs);
-      closeModal();
-      app.render();
+      closeModal(); app.render();
       toast("تم إضافة الطلب");
       return false;
     },
 
-    demoRequest() {
+    async demoRequest() {
       const samples = [
         { name: "خالد العتيبي", phone: "0501234567", type: "إسبا / منتجع صحي", message: "أرغب بتنفيذ إسبا بمساحة 200 متر شمال الرياض، يحتوي على حمام مغربي وغرفة بخار." },
         { name: "هند المطيري", phone: "0567654321", type: "صالون تجميل نسائي", message: "صالون نسائي بمساحة 180 متر — كوافير، أظافر، عناية." },
         { name: "ماجد الدوسري", phone: "0512223344", type: "مطعم", message: "مطعم إيطالي راقي 350 متر — حي حطين." }
       ];
       const s = samples[Math.floor(Math.random() * samples.length)];
-      const reqs = store.get("requests", []);
-      reqs.push({ id: uid(), ...s, status: "new", date: new Date().toISOString(), source: "تجريبي" });
-      store.set("requests", reqs);
+      await dbUpsert("requests", { id: uid(), ...s, status: "new", date: new Date().toISOString(), source: "تجريبي" });
       app.render();
       toast("تم إضافة طلب تجريبي");
     },
@@ -813,10 +843,9 @@ window.CRM = (function () {
         </form>
       `);
     },
-    saveCustomer(e) {
+    async saveCustomer(e) {
       e.preventDefault();
-      const customers = store.get("customers", []);
-      customers.push({
+      await dbUpsert("customers", {
         id: uid(),
         name: document.getElementById("c-name").value.trim(),
         phone: document.getElementById("c-phone").value.trim(),
@@ -824,13 +853,12 @@ window.CRM = (function () {
         source: document.getElementById("c-source").value.trim() || "يدوي",
         date: new Date().toISOString()
       });
-      store.set("customers", customers);
       closeModal(); app.render(); toast("تم إضافة العميل");
       return false;
     },
-    deleteCustomer(id) {
+    async deleteCustomer(id) {
       if (!confirm("حذف هذا العميل؟")) return;
-      store.set("customers", store.get("customers", []).filter(c => c.id !== id));
+      await dbRemove("customers", id);
       app.render(); toast("تم الحذف");
     },
 
@@ -864,26 +892,24 @@ window.CRM = (function () {
         </form>
       `);
     },
-    saveProject(e) {
+    async saveProject(e) {
       e.preventDefault();
-      const projects = store.get("projects", []);
-      projects.push({
+      await dbUpsert("projects", {
         id: uid(),
         name: document.getElementById("p-name").value.trim(),
-        customerId: document.getElementById("p-customer").value,
+        customerId: document.getElementById("p-customer").value || null,
         type: document.getElementById("p-type").value,
         value: +document.getElementById("p-value").value || 0,
         progress: +document.getElementById("p-progress").value || 0,
         status: document.getElementById("p-status").value,
         date: new Date().toISOString()
       });
-      store.set("projects", projects);
       closeModal(); app.render(); toast("تم إنشاء المشروع");
       return false;
     },
-    deleteProject(id) {
+    async deleteProject(id) {
       if (!confirm("حذف هذا المشروع؟")) return;
-      store.set("projects", store.get("projects", []).filter(p => p.id !== id));
+      await dbRemove("projects", id);
       app.render(); toast("تم الحذف");
     },
 
@@ -914,25 +940,23 @@ window.CRM = (function () {
         </form>
       `);
     },
-    saveQuote(e) {
+    async saveQuote(e) {
       e.preventDefault();
-      const quotes = store.get("quotes", []);
-      quotes.push({
+      await dbUpsert("quotes", {
         id: uid(),
         number: document.getElementById("q-num").value.trim(),
-        customerId: document.getElementById("q-customer").value,
+        customerId: document.getElementById("q-customer").value || null,
         total: +document.getElementById("q-total").value || 0,
         status: document.getElementById("q-status").value,
         notes: document.getElementById("q-notes").value.trim(),
         date: new Date().toISOString()
       });
-      store.set("quotes", quotes);
       closeModal(); app.render(); toast("تم حفظ العرض");
       return false;
     },
-    deleteQuote(id) {
+    async deleteQuote(id) {
       if (!confirm("حذف هذا العرض؟")) return;
-      store.set("quotes", store.get("quotes", []).filter(q => q.id !== id));
+      await dbRemove("quotes", id);
       app.render(); toast("تم الحذف");
     },
 
@@ -955,35 +979,35 @@ window.CRM = (function () {
         </form>
       `);
     },
-    saveTask(e) {
+    async saveTask(e) {
       e.preventDefault();
-      const tasks = store.get("tasks", []);
-      tasks.push({
+      const due = document.getElementById("t-due").value;
+      await dbUpsert("tasks", {
         id: uid(),
         title: document.getElementById("t-title").value.trim(),
-        dueDate: document.getElementById("t-due").value,
-        status: document.getElementById("t-status").value
+        dueDate: due || null,
+        status: document.getElementById("t-status").value,
+        date: new Date().toISOString()
       });
-      store.set("tasks", tasks);
       closeModal(); app.render(); toast("تم إضافة المهمة");
       return false;
     },
-    completeTask(id) {
+    async completeTask(id) {
       const tasks = store.get("tasks", []);
       const t = tasks.find(x => x.id === id);
       if (!t) return;
       t.status = "done";
-      store.set("tasks", tasks);
+      await dbUpsert("tasks", t);
       app.render(); toast("تم إنجاز المهمة");
     },
-    deleteTask(id) {
+    async deleteTask(id) {
       if (!confirm("حذف هذه المهمة؟")) return;
-      store.set("tasks", store.get("tasks", []).filter(t => t.id !== id));
+      await dbRemove("tasks", id);
       app.render(); toast("تم الحذف");
     },
 
     // ===== Settings =====
-    saveSettings(e) {
+    async saveSettings(e) {
       e.preventDefault();
       const s = {
         companyName: document.getElementById("setCompany").value.trim(),
@@ -991,15 +1015,20 @@ window.CRM = (function () {
         companyPhone: document.getElementById("setPhone").value.trim(),
         whatsapp: document.getElementById("setWA").value.trim()
       };
-      store.set("settings", s);
+      if (window.DB && window.DB.saveSettings) {
+        await window.DB.saveSettings(s);
+      } else {
+        store.set("settings", s);
+      }
       toast("تم حفظ الإعدادات");
       return false;
     },
-    changePassword(e) {
+    async changePassword(e) {
       e.preventDefault();
       const oldP = document.getElementById("oldPw").value;
       const newP = document.getElementById("newPw").value;
-      if (auth.changePassword(oldP, newP)) {
+      const ok = await auth.changePassword(oldP, newP);
+      if (ok) {
         toast("تم تغيير كلمة المرور");
         document.getElementById("oldPw").value = "";
         document.getElementById("newPw").value = "";
@@ -1044,9 +1073,15 @@ window.CRM = (function () {
       };
       r.readAsText(f);
     },
-    resetData() {
+    async resetData() {
       if (!confirm("سيتم حذف جميع الطلبات والعملاء والمشاريع. هل أنت متأكد؟")) return;
       if (!confirm("تأكيد نهائي — هذه العملية لا يمكن التراجع عنها.")) return;
+      // Wipe Supabase tables row by row (or could use truncate via RPC)
+      if (window.DB && window.DB.sb) {
+        for (const t of ["requests", "customers", "projects", "quotes", "tasks"]) {
+          try { await window.DB.sb.from(t).delete().neq("id", ""); } catch (e) { /* ignore */ }
+        }
+      }
       ["requests", "customers", "projects", "quotes", "tasks"].forEach(k => store.set(k, []));
       toast("تم حذف البيانات");
       app.render();
@@ -1055,10 +1090,9 @@ window.CRM = (function () {
 
   // ========== Public API for site forms ==========
   const intake = {
-    submit(payload) {
+    async submit(payload) {
       seedIfEmpty();
-      const reqs = store.get("requests", []);
-      reqs.push({
+      const item = {
         id: uid(),
         name: payload.name || "",
         phone: payload.phone || "",
@@ -1067,8 +1101,14 @@ window.CRM = (function () {
         status: "new",
         date: new Date().toISOString(),
         source: payload.source || "نموذج الموقع"
-      });
-      store.set("requests", reqs);
+      };
+      if (window.DB && window.DB.upsert) {
+        await window.DB.upsert("requests", item);
+      } else {
+        const reqs = store.get("requests", []);
+        reqs.unshift(item);
+        store.set("requests", reqs);
+      }
       return true;
     }
   };

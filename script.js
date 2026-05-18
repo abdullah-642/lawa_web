@@ -100,8 +100,8 @@
     }
   }
 
-  // ----------- Contact form: save to CRM intake -----------
-  window.sendWhatsApp = function (e) {
+  // ----------- Contact form: save to CRM intake (Supabase) -----------
+  window.sendWhatsApp = async function (e) {
     e.preventDefault();
     const lang = document.documentElement.dataset.lang;
     const name = document.getElementById("f-name").value.trim();
@@ -109,9 +109,13 @@
     const type = document.getElementById("f-type").value;
     const msg = document.getElementById("f-msg").value.trim();
 
-    // Save to CRM intake (browser localStorage). If CRM script not present, fall back to WhatsApp.
+    // Save to CRM intake (Supabase via DB, or localStorage as fallback).
     if (window.CRM && CRM.intake) {
-      CRM.intake.submit({ name, phone, type, message: msg, source: "نموذج الموقع" });
+      try {
+        const submitBtn = document.querySelector("#contactForm button[type=submit]");
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = ".7"; }
+        await CRM.intake.submit({ name, phone, type, message: msg, source: "نموذج الموقع" });
+      } catch (ex) { console.warn("intake submit failed:", ex); }
 
       // Show success state in the form
       const form = document.getElementById("contactForm");
