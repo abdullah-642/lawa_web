@@ -13,6 +13,7 @@ const I18N = {
     "nav.clients": "عملاؤنا",
     "nav.blog": "المدونة",
     "nav.contact": "تواصل",
+    "nav.login": "تسجيل الدخول",
 
     "hero.since": "منذ 2017 · الرياض",
     "hero.t1": "حيث تبدأ",
@@ -142,6 +143,7 @@ const I18N = {
     "nav.clients": "Clients",
     "nav.blog": "Blog",
     "nav.contact": "Contact",
+    "nav.login": "Login",
 
     "hero.since": "Since 2017 · Riyadh",
     "hero.t1": "Where the",
