@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 240" preserveAspectRatio="xMidYMid meet">
+  <!-- Liwa wordmark in italic Didone-style serif -->
+  <g fill="#0a0a0a">
+    <text x="22" y="142"
+          font-family="'Cormorant Garamond', 'Playfair Display', 'Times New Roman', Georgia, serif"
+          font-size="152" font-weight="500" font-style="italic"
+          letter-spacing="-3">Liwa</text>
+    <!-- Period -->
+    <circle cx="350" cy="135" r="7"/>
+    <!-- Small triangle accent next to the period -->
+    <path d="M362 142 L378 150 L362 158 Z"/>
+  </g>
+
+  <!-- Architectural door/pillar mark (mirrors the original glyph on the right) -->
+  <g transform="translate(454, 24)" fill="#0a0a0a">
+    <path d="M0 0 L28 10 L28 146 L0 156 Z"/>
+    <path d="M52 18 L80 28 L80 138 L52 148 Z"/>
+  </g>
+
+  <!-- "CONCEPT DESIGN" subtitle, widely letter-spaced -->
+  <text x="40" y="205"
+        font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+        font-size="22" letter-spacing="16"
+        font-weight="400" fill="#0a0a0a">CONCEPT DESIGN</text>
+</svg>

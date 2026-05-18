@@ -11,13 +11,56 @@ create extension if not exists pgcrypto;
 -- ============================================================
 
 create table if not exists public.app_users (
-  id          text primary key,
-  username    text unique not null,
-  password    text not null,
-  name        text not null,
-  role        text default 'Admin',
-  created_at  timestamptz default now()
+  id           text primary key,
+  username     text unique not null,
+  password     text not null,
+  name         text not null,
+  role         text default 'Admin',
+  title        text,
+  salary       numeric default 0,
+  permissions  jsonb default '[]'::jsonb,
+  date         timestamptz default now(),
+  created_at   timestamptz default now()
 );
+-- Add new columns if upgrading from old schema
+alter table public.app_users add column if not exists title text;
+alter table public.app_users add column if not exists salary numeric default 0;
+alter table public.app_users add column if not exists permissions jsonb default '[]'::jsonb;
+alter table public.app_users add column if not exists date timestamptz default now();
+
+create table if not exists public.invoices (
+  id            text primary key,
+  number        text not null,
+  "customerId"  text,
+  "customerName" text,
+  items         jsonb default '[]'::jsonb,
+  subtotal      numeric default 0,
+  vat           numeric default 0,
+  total         numeric default 0,
+  status        text default 'draft',
+  "dueDate"     date,
+  notes         text,
+  date          timestamptz default now()
+);
+
+create table if not exists public.employees (
+  id           text primary key,
+  name         text not null,
+  title        text not null,
+  phone        text,
+  email        text,
+  salary       numeric default 0,
+  "startDate"  date,
+  notes        text,
+  date         timestamptz default now()
+);
+
+alter table public.invoices enable row level security;
+alter table public.employees enable row level security;
+drop policy if exists "anon all invoices" on public.invoices;
+create policy "anon all invoices" on public.invoices for all using (true) with check (true);
+drop policy if exists "anon all employees" on public.employees;
+create policy "anon all employees" on public.employees for all using (true) with check (true);
 
 create table if not exists public.requests (
   id          text primary key,

@@ -56,7 +56,6 @@ window.DB = (function () {
     try {
       const { data } = await sb.from("settings").select("*").eq("id", 1).maybeSingle();
       if (data) {
-        // Remap snake/db keys to app keys
         localSet("settings", {
           companyName: data.companyName,
           companyEmail: data.companyEmail,
@@ -65,6 +64,19 @@ window.DB = (function () {
         });
       }
     } catch (e) { /* ignore */ }
+    // Pull users for user management view (without passwords if RLS blocks)
+    try {
+      const { data } = await sb.from("app_users").select("id, username, name, role, created_at");
+      if (data && data.length) {
+        // Merge with local (preserve local password copies for offline login)
+        const local = localGet("users", []);
+        const merged = data.map(u => {
+          const lu = local.find(x => x.id === u.id);
+          return { ...u, password: lu ? lu.password : "" };
+        });
+        localSet("users", merged);
+      }
+    } catch (e) { /* ignore — RLS may block */ }
   }
 
   // -------- Push (write to Supabase) --------
