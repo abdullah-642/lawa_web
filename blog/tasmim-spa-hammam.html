@@ -26,7 +26,7 @@
 
   <header class="site-header" id="siteHeader">
     <a href="../index.html" class="brand">
-      <img class="brand-img" src="../assets/logo.png" alt="Liwa Concept" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <img class="brand-img" src="../assets/logo.png" alt="Liwa Concept" onerror="if(this.src.indexOf('logo.png')>-1){this.src='../assets/brand.svg';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}" />
       <span class="brand-fallback" style="display:flex;"><span class="brand-text"><span class="brand-name">Liwa<span class="brand-dot">.</span></span><span class="brand-sub">CONCEPT DESIGN</span></span></span>
     </a>
     <nav class="nav" id="nav"><a href="../index.html#about">من نحن</a><a href="../index.html#expertise">تخصصنا</a><a href="../index.html#projects">مشاريعنا</a><a href="../blog.html" class="active">المدونة</a><a href="../index.html#contact">تواصل</a></nav>

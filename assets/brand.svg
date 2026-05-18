@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80">
+  <!-- "Liwa" wordmark in italic serif -->
+  <text x="2" y="50"
+        font-family="Cormorant Garamond, Georgia, 'Times New Roman', serif"
+        font-size="52" font-weight="500" font-style="italic"
+        fill="#0a0a0a" letter-spacing="-1.5">Liwa</text>
+  <!-- Dot accent -->
+  <circle cx="118" cy="48" r="3.2" fill="#0a0a0a"/>
+  <!-- Architectural door / pillar icon (mirrors the original logo's right side) -->
+  <g transform="translate(135, 14)">
+    <path d="M0 2 L8 6 L8 56 L0 60 Z" fill="#0a0a0a"/>
+    <path d="M12 8 L20 11 L20 52 L12 55 Z" fill="#0a0a0a"/>
+  </g>
+  <!-- "CONCEPT DESIGN" subtitle -->
+  <text x="2" y="72"
+        font-family="Inter, Helvetica, Arial, sans-serif"
+        font-size="9" letter-spacing="4" fill="#6b6b67">CONCEPT DESIGN</text>
+</svg>

@@ -669,6 +669,7 @@ table.crm-table .td-actions {
 }
 
 /* Modal */
+.crm-modal[hidden] { display: none !important; }
 .crm-modal {
   position: fixed; inset: 0;
   z-index: 100;

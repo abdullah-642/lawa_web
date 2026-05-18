@@ -17,7 +17,7 @@
   <!-- ===== Sidebar ===== -->
   <aside class="crm-sidebar" id="crmSidebar">
     <div class="cs-brand">
-      <img src="assets/logo.png" alt="Liwa" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <img src="assets/logo.png" alt="Liwa" onerror="if(this.src.indexOf('logo.png')>-1){this.src='assets/brand.svg';}else{this.style.display='none';this.nextElementSibling.style.display='flex';}" />
       <span class="cs-fallback">
         <span class="brand-name">Liwa<span class="brand-dot">.</span></span>
         <span class="brand-sub">CONCEPT DESIGN</span>

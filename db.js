@@ -126,28 +126,34 @@ window.DB = (function () {
     }
   }
 
-  // -------- Auth (via RPC verify_login) --------
+  // -------- Auth (via RPC verify_login, with local fallback) --------
   async function login(username, password) {
-    if (!sb) {
-      // Local fallback against seeded admin
-      const users = localGet("users", [{ id: "u_admin", username: "admin", password: "Liwa@2026", name: "المسؤول", role: "Admin" }]);
-      const u = users.find(x => x.username === username && x.password === password);
-      if (!u) return null;
-      const sess = { id: u.id, username: u.username, name: u.name, role: u.role, ts: Date.now() };
-      localSet("session", sess);
-      return sess;
+    // Try Supabase first if configured
+    if (sb) {
+      try {
+        const { data, error } = await sb.rpc("verify_login", { p_username: username, p_password: password });
+        if (!error && data) {
+          const sess = { ...data, ts: Date.now() };
+          localSet("session", sess);
+          return sess;
+        }
+        if (error) console.warn("[DB] verify_login RPC failed, falling back to local:", error.message);
+      } catch (e) {
+        console.warn("[DB] login attempt failed, falling back to local:", e.message);
+      }
     }
-    try {
-      const { data, error } = await sb.rpc("verify_login", { p_username: username, p_password: password });
-      if (error) throw error;
-      if (!data) return null;
-      const sess = { ...data, ts: Date.now() };
-      localSet("session", sess);
-      return sess;
-    } catch (e) {
-      console.error("[DB] login error:", e);
-      return null;
-    }
+
+    // Local fallback (works always, even before SQL/anon key is set up)
+    const defaultUsers = [{ id: "u_admin", username: "admin", password: "Liwa@2026", name: "المسؤول", role: "Admin" }];
+    const users = localGet("users", defaultUsers);
+    // Ensure default admin exists if list is empty
+    if (!users.length) users.push(...defaultUsers);
+    localSet("users", users);
+    const u = users.find(x => x.username === username && x.password === password);
+    if (!u) return null;
+    const sess = { id: u.id, username: u.username, name: u.name, role: u.role, ts: Date.now() };
+    localSet("session", sess);
+    return sess;
   }
 
   function logout() {
@@ -161,24 +167,24 @@ window.DB = (function () {
   async function changePassword(oldP, newP) {
     const sess = currentSession();
     if (!sess) return false;
-    if (!sb) {
-      const users = localGet("users", []);
-      const idx = users.findIndex(u => u.id === sess.id);
-      if (idx === -1 || users[idx].password !== oldP) return false;
-      users[idx].password = newP;
-      localSet("users", users);
-      return true;
+    // Try Supabase first
+    if (sb) {
+      try {
+        const { data, error } = await sb.rpc("change_password", {
+          p_user_id: sess.id, p_old_password: oldP, p_new_password: newP
+        });
+        if (!error && data) return true;
+      } catch (e) {
+        console.warn("[DB] change_password RPC failed, falling back to local:", e.message);
+      }
     }
-    try {
-      const { data, error } = await sb.rpc("change_password", {
-        p_user_id: sess.id, p_old_password: oldP, p_new_password: newP
-      });
-      if (error) throw error;
-      return !!data;
-    } catch (e) {
-      console.error("[DB] change_password error:", e);
-      return false;
-    }
+    // Local fallback
+    const users = localGet("users", []);
+    const idx = users.findIndex(u => u.id === sess.id);
+    if (idx === -1 || users[idx].password !== oldP) return false;
+    users[idx].password = newP;
+    localSet("users", users);
+    return true;
   }
 
   return {

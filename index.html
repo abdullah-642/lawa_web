@@ -134,7 +134,8 @@
   <!-- Header -->
   <header class="site-header" id="siteHeader">
     <a href="#hero" class="brand" id="brand">
-      <img class="brand-img" id="brandImg" src="assets/logo.png" alt="Liwa Concept" onerror="this.style.display='none';document.getElementById('brandFallback').style.display='flex';" />
+      <img class="brand-img" id="brandImg" src="assets/logo.png" alt="Liwa Concept"
+           onerror="if(this.src.indexOf('logo.png')>-1){this.src='assets/brand.svg';}else{this.style.display='none';document.getElementById('brandFallback').style.display='flex';}" />
       <span class="brand-fallback" id="brandFallback">
         <span class="brand-mark">
           <svg viewBox="0 0 60 60" aria-hidden="true">
