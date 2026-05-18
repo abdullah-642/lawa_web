@@ -542,6 +542,52 @@ button { background: none; border: 0; color: inherit; font: inherit; cursor: poi
 .clients-note { margin-top: 24px; font-size: 12px; color: var(--mute); text-align: center; }
 .clients-note code { font-family: monospace; background: var(--bg-deep); padding: 2px 8px; border-radius: 2px; }
 
+/* ============== SEO Services band ============== */
+.seo-services {
+  background: var(--bg-deep);
+  padding: 100px 48px;
+  position: relative; z-index: 3;
+}
+.services-cloud {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-top: 24px;
+}
+.sc-col h3 {
+  font-family: "Tajawal", serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+}
+.sc-col ul { list-style: none; }
+.sc-col li {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  padding: 4px 0;
+  position: relative;
+  padding-inline-start: 16px;
+}
+.sc-col li::before {
+  content: ""; position: absolute;
+  inset-inline-start: 0; top: 14px;
+  width: 6px; height: 1px;
+  background: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  .seo-services { padding: 64px 24px; }
+  .services-cloud { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+}
+@media (max-width: 640px) {
+  .seo-services { padding: 48px 18px; }
+  .services-cloud { grid-template-columns: 1fr; gap: 20px; }
+}
+
 /* ============== Contact ============== */
 .contact-grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
