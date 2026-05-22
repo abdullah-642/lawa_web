@@ -46,8 +46,10 @@ Disallow: /
 User-agent: anthropic-ai
 Disallow: /
 
-# Sitemap
+# Sitemaps
 Sitemap: https://www.liwa1.com/sitemap.xml
+Sitemap: https://www.liwa1.com/sitemap-images.xml
+Sitemap: https://www.liwa1.com/sitemap-index.xml
 
 # Host (helps clarify the canonical domain to Yandex)
 Host: https://www.liwa1.com
