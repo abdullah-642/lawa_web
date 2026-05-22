@@ -277,7 +277,7 @@
     animate();
   }
 
-  // ----------- About card 3D (small isolated scene) -----------
+  // ----------- About card 3D — Architectural arch portal (interior design motif) -----------
   function initAboutCard() {
     if (!window.THREE) return;
     const mount = document.getElementById("aboutCube");
@@ -290,45 +290,86 @@
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 100);
-    camera.position.set(2, 1.6, 4.4);
-    camera.lookAt(0, 0, 0);
+    const camera = new THREE.PerspectiveCamera(36, w / h, 0.1, 100);
+    camera.position.set(1.8, 1.05, 4.4);
+    camera.lookAt(0, 0.05, 0);
 
-    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-    const l1 = new THREE.DirectionalLight(0xffffff, 1.4);
-    l1.position.set(4, 6, 3);
-    scene.add(l1);
-    const l2 = new THREE.DirectionalLight(0xb89968, 0.7);
-    l2.position.set(-4, -2, -3);
-    scene.add(l2);
+    // Lights — warm interior atmosphere
+    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    const key = new THREE.DirectionalLight(0xffffff, 1.1);
+    key.position.set(3.5, 5, 3);
+    scene.add(key);
+    const warm = new THREE.PointLight(0xd6a35a, 2.2, 6, 1.2);
+    warm.position.set(0, 0.55, 0.4);
+    scene.add(warm);
+    const rim = new THREE.DirectionalLight(0xb89968, 0.4);
+    rim.position.set(-3, 1, -2);
+    scene.add(rim);
 
-    // Stack of architectural slabs (concept of layered design)
-    const grp = new THREE.Group();
-    const colors = [0xf6f4ef, 0xb89968, 0x0a0a0a];
-    for (let i = 0; i < 3; i++) {
-      const m = new THREE.Mesh(
-        new THREE.BoxGeometry(1.6 - i * 0.25, 0.18, 1.6 - i * 0.25),
-        new THREE.MeshStandardMaterial({ color: colors[i], metalness: i === 1 ? 0.6 : 0.1, roughness: i === 1 ? 0.35 : 0.6 })
-      );
-      m.position.y = -0.6 + i * 0.5;
-      grp.add(m);
-    }
-    // Top thin frame
-    const frame = new THREE.Mesh(
-      new THREE.TorusGeometry(0.55, 0.02, 12, 64),
-      new THREE.MeshStandardMaterial({ color: 0xb89968, metalness: 0.7, roughness: 0.25 })
+    const group = new THREE.Group();
+    const gold  = new THREE.MeshStandardMaterial({ color: 0xb89968, metalness: 0.92, roughness: 0.18 });
+    const stone = new THREE.MeshStandardMaterial({ color: 0xeae5d8, metalness: 0.08, roughness: 0.5 });
+    const wallMat = new THREE.MeshStandardMaterial({ color: 0x18171a, roughness: 0.92 });
+
+    // Marble floor
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 4.2), stone);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -0.85;
+    group.add(floor);
+
+    // Back wall — adds depth like a real interior
+    const wall = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 2.6), wallMat);
+    wall.position.set(0, 0.35, -1);
+    group.add(wall);
+
+    // Two gold columns
+    const colGeo = new THREE.CylinderGeometry(0.07, 0.07, 1.42, 28);
+    const colL = new THREE.Mesh(colGeo, gold); colL.position.set(-0.66, -0.14, 0); group.add(colL);
+    const colR = new THREE.Mesh(colGeo, gold); colR.position.set( 0.66, -0.14, 0); group.add(colR);
+
+    // Column bases
+    const baseGeo = new THREE.BoxGeometry(0.22, 0.08, 0.22);
+    const baseL = new THREE.Mesh(baseGeo, gold); baseL.position.set(-0.66, -0.81, 0); group.add(baseL);
+    const baseR = new THREE.Mesh(baseGeo, gold); baseR.position.set( 0.66, -0.81, 0); group.add(baseR);
+
+    // Top arch (semi-circle torus)
+    const arch = new THREE.Mesh(
+      new THREE.TorusGeometry(0.66, 0.07, 18, 80, Math.PI),
+      gold
     );
-    frame.position.y = 0.55;
-    frame.rotation.x = Math.PI / 2;
-    grp.add(frame);
+    arch.position.set(0, 0.57, 0);
+    group.add(arch);
 
-    scene.add(grp);
+    // Pendant lamp inside the arch
+    const pendant = new THREE.Mesh(
+      new THREE.SphereGeometry(0.075, 28, 28),
+      new THREE.MeshStandardMaterial({ color: 0xffd58a, emissive: 0xd6a35a, emissiveIntensity: 2.4 })
+    );
+    pendant.position.set(0, 0.18, 0.08);
+    group.add(pendant);
+
+    // Suspension wire
+    const wireGeo = new THREE.BufferGeometry().setFromPoints([
+      new THREE.Vector3(0, 0.57, 0.08),
+      new THREE.Vector3(0, 0.18, 0.08)
+    ]);
+    group.add(new THREE.Line(wireGeo, new THREE.LineBasicMaterial({ color: 0x8c6f3f, transparent: true, opacity: 0.7 })));
+
+    // Floor accent — gold inlay strip at threshold
+    const inlay = new THREE.Mesh(
+      new THREE.BoxGeometry(1.55, 0.012, 0.04),
+      gold
+    );
+    inlay.position.set(0, -0.842, 0.32);
+    group.add(inlay);
+
+    scene.add(group);
 
     let mx = 0, my = 0, tx = 0, ty = 0;
     mount.addEventListener("mousemove", (e) => {
       const r = mount.getBoundingClientRect();
-      tx = ((e.clientX - r.left) / r.width - 0.5) * 1.2;
-      ty = ((e.clientY - r.top) / r.height - 0.5) * 0.8;
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 0.5;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 0.25;
     });
 
     const onResize = () => {
@@ -344,9 +385,12 @@
       const t = clock.getElapsedTime();
       mx += (tx - mx) * 0.08;
       my += (ty - my) * 0.08;
-      grp.rotation.y = t * 0.25 + mx * 0.6;
-      grp.rotation.x = my * 0.4;
-      frame.rotation.z = t * 0.4;
+      // Subtle parallax — arch always faces forward, like a real space being viewed
+      group.rotation.y = Math.sin(t * 0.22) * 0.16 + mx * 0.35;
+      group.rotation.x = my * 0.18;
+      // Pendant flicker — warm breathing glow
+      pendant.material.emissiveIntensity = 2.2 + Math.sin(t * 1.6) * 0.45;
+      warm.intensity = 2.0 + Math.sin(t * 1.6) * 0.4;
       renderer.render(scene, camera);
       requestAnimationFrame(loop);
     }
