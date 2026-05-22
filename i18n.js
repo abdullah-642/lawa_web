@@ -44,8 +44,8 @@ const I18N = {
     "exp.c1.p": "سبا، حمامات مغربية، وغرف بخار، كهوف ملح، غرف ثلج بتشطيبات وتقنيات متخصصة.",
     "exp.c2.t": "المحلات والمطاعم",
     "exp.c2.p": "هويات تجارية متكاملة تترجم الفكرة إلى تجربة مكانية متماسكة.",
-    "exp.c3.t": "المساحات السكنية الراقية",
-    "exp.c3.p": "منازل تعكس شخصية أصحابها بمواد مختارة وتفاصيل مصممة بعناية.",
+    "exp.c3.t": "المساحات المكتبية",
+    "exp.c3.p": "مكاتب ومقرات شركات بتصميم وظيفي يعزز الإنتاجية ويعكس هوية المؤسسة.",
     "exp.c4.t": "التشطيبات الفندقية",
     "exp.c4.p": "معايير ضيافة عالمية بتنفيذ يحاكي توقعات الفنادق الفاخرة.",
 
@@ -174,8 +174,8 @@ const I18N = {
     "exp.c1.p": "Spas, Moroccan baths, steam rooms, salt caves, and ice rooms with specialized finishes and engineering.",
     "exp.c2.t": "Retail & Restaurants",
     "exp.c2.p": "Holistic commercial identities translated into coherent spatial experiences.",
-    "exp.c3.t": "Premium Residential",
-    "exp.c3.p": "Homes that reflect their owners through carefully selected materials and considered detail.",
+    "exp.c3.t": "Office Spaces",
+    "exp.c3.p": "Offices and corporate headquarters with functional design that drives productivity and reflects brand identity.",
     "exp.c4.t": "Hospitality Finishes",
     "exp.c4.p": "Global hospitality standards executed to match the expectations of luxury hotels.",
 
