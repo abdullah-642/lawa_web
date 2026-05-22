@@ -134,10 +134,15 @@ h1, h2, h3, h4 {
 
 .brand {
   display: flex; align-items: center;
-  height: 38px;
+  height: 44px;
   color: var(--ink);
+  flex-shrink: 0;
 }
-.brand-img { height: 100%; width: auto; max-height: 38px; }
+.brand-img { height: 100%; width: auto; max-height: 44px; min-width: 110px; }
+@media (max-width: 640px) {
+  .brand { height: 36px; }
+  .brand-img { max-height: 36px; min-width: 90px; }
+}
 
 .nav {
   display: none;
@@ -287,19 +292,19 @@ h1, h2, h3, h4 {
 
 .hero-title {
   font-family: var(--serif);
-  font-size: clamp(54px, 10vw, 144px);
+  font-size: clamp(40px, 7vw, 96px);
   font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.025em;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
   color: #f8f3e4;
   text-shadow: 0 2px 30px rgba(0,0,0,0.3);
 }
 [data-lang="ar"] .hero-title {
   font-family: var(--arabic);
   font-weight: 700;
-  font-size: clamp(42px, 8.5vw, 120px);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-size: clamp(34px, 5.5vw, 78px);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
 }
 .hero-title .line { display: block; }
 .hero-title .italic { font-family: var(--serif); font-style: italic; color: var(--accent-light); }
@@ -388,12 +393,12 @@ h1, h2, h3, h4 {
 
 .section-title {
   font-family: var(--serif);
-  font-size: clamp(36px, 6vw, 76px);
+  font-size: clamp(32px, 5vw, 60px);
   font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
 }
-[data-lang="ar"] .section-title { font-family: var(--arabic); font-weight: 700; font-size: clamp(30px, 5.5vw, 64px); line-height: 1.2; }
+[data-lang="ar"] .section-title { font-family: var(--arabic); font-weight: 700; font-size: clamp(28px, 4vw, 50px); line-height: 1.25; }
 
 .section-lead {
   font-family: var(--sans);
@@ -469,11 +474,12 @@ h1, h2, h3, h4 {
   display: block;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(30px, 4.5vw, 50px);
-  line-height: 1.25;
+  font-size: clamp(26px, 3.6vw, 42px);
+  line-height: 1.3;
   margin-top: 18px;
   color: var(--ink);
 }
+[data-lang="ar"] .about-quote .q-text { font-family: var(--arabic); font-style: normal; font-weight: 600; font-size: clamp(24px, 3.2vw, 38px); }
 [data-lang="ar"] .about-quote .q-text { font-family: var(--arabic); font-style: normal; font-weight: 500; font-size: clamp(26px, 3.6vw, 40px); }
 .about-quote .q-label {
   display: block;
@@ -981,20 +987,44 @@ h1, h2, h3, h4 {
 .section-head, .section-kicker { display: none; }
 .exp-tag, .exp-cat, .ac-3d { display: none; }
 
+/* ============== Overflow protection ============== */
+.hero, .section, .vision-section, .ig-section, .clients-section { max-width: 100%; overflow-x: clip; }
+.hero-title, .section-title, .hero-sub, .vision-quote { word-break: break-word; overflow-wrap: anywhere; }
+
 /* ============== Mobile fine-tuning ============== */
+@media (max-width: 880px) {
+  .hero { min-height: 88vh; padding-top: 88px; }
+  .hero-title { font-size: clamp(36px, 9vw, 60px) !important; line-height: 1.08; }
+  [data-lang="ar"] .hero-title { font-size: clamp(30px, 7vw, 48px) !important; line-height: 1.2; }
+}
+
 @media (max-width: 640px) {
-  .hero { padding-top: 90px; min-height: auto; padding-bottom: 80px; }
-  .hero-grid { gap: 24px; }
-  .hero-cta .btn { padding: 14px 22px; font-size: 11px; }
-  [data-lang="ar"] .hero-cta .btn { font-size: 13px; padding: 14px 22px; }
-  .section-header { gap: 14px; margin-bottom: 36px; }
-  .exp-card { padding: 32px 22px; }
-  .method-step { padding: 36px 22px; }
-  .step-num { font-size: 58px; }
-  .vision-quote { font-size: clamp(22px, 6vw, 32px); }
+  body { font-size: 14px; }
+  .hero { padding-top: 84px; padding-bottom: 70px; min-height: auto; }
+  .hero-grid { gap: 22px; }
+  .hero-title { font-size: clamp(34px, 8.5vw, 48px) !important; }
+  [data-lang="ar"] .hero-title { font-size: clamp(28px, 7vw, 40px) !important; line-height: 1.25; }
+  .hero-sub { font-size: 14.5px; }
+  .hero-cta { gap: 10px; }
+  .hero-cta .btn { padding: 13px 18px; font-size: 11px; }
+  [data-lang="ar"] .hero-cta .btn { font-size: 12.5px; padding: 13px 20px; }
+  .section { padding: 60px 0; }
+  .section-header { gap: 12px; margin-bottom: 32px; }
+  .section-title { font-size: clamp(26px, 7vw, 36px) !important; }
+  [data-lang="ar"] .section-title { font-size: clamp(22px, 6vw, 32px) !important; }
+  .about-quote { padding: 36px 22px; }
+  .about-quote .q-text { font-size: clamp(22px, 5vw, 28px) !important; }
+  [data-lang="ar"] .about-quote .q-text { font-size: clamp(20px, 4.5vw, 26px) !important; }
+  .exp-card { padding: 28px 22px; min-height: 320px; }
+  .exp-card h3 { font-size: 20px; }
+  [data-lang="ar"] .exp-card h3 { font-size: 19px; }
+  .method-step { padding: 32px 22px; }
+  .step-num { font-size: 54px; }
+  .vision-quote { font-size: clamp(22px, 6vw, 28px); line-height: 1.4; }
+  [data-lang="ar"] .vision-quote { font-size: clamp(20px, 5.5vw, 26px); line-height: 1.5; }
   .ig-card { padding: 28px 22px; }
   .ig-visual { max-width: 150px; }
   .ig-grad { border-radius: 20px; }
-  .foot-bottom { font-size: 11px; flex-direction: column; align-items: flex-start; }
+  .foot-bottom { font-size: 11px; flex-direction: column; align-items: flex-start; gap: 6px; }
   .wa-float { bottom: 18px; inset-inline-start: 18px; width: 50px; height: 50px; }
 }

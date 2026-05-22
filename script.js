@@ -5,23 +5,11 @@
 (function () {
   "use strict";
 
-  // ----------- Preloader -----------
+  // ----------- Preloader (removed in luxury redesign) -----------
   const preloader = document.getElementById("preloader");
-  const bar = document.getElementById("preloaderBar");
-  const count = document.getElementById("preloaderCount");
-  let progress = 0;
-
-  const loaderInterval = setInterval(() => {
-    progress += Math.random() * 12 + 6;
-    if (progress >= 100) {
-      progress = 100;
-      clearInterval(loaderInterval);
-      setTimeout(() => preloader.classList.add("gone"), 400);
-      setTimeout(initReveal, 700);
-    }
-    bar.style.width = progress + "%";
-    count.textContent = Math.floor(progress) + "%";
-  }, 110);
+  if (preloader) preloader.remove();
+  // Trigger reveal animations once DOM is ready
+  setTimeout(initReveal, 50);
 
   // ----------- Year -----------
   document.getElementById("year").textContent = new Date().getFullYear();
