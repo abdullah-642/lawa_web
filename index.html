@@ -234,13 +234,39 @@
         <circle cx="100" cy="100" r="62" fill="none" stroke="#f0d6b8" stroke-width="0.5"/>
         <text x="100" y="132" font-family="Georgia, 'Brush Script MT', cursive" font-size="92" font-style="italic" font-weight="500" fill="#f0d6b8" text-anchor="middle">D</text>
       </symbol>
-      <symbol id="lg-dice" viewBox="0 0 200 200">
+      <symbol id="lg-lobah" viewBox="0 0 200 200">
+        <!-- Black circle background -->
         <circle cx="100" cy="100" r="100" fill="#0a0a0a"/>
-        <path d="M65 58 L65 142 Q65 148 71 148 L120 148 Q150 148 150 120 L150 80 Q150 58 130 58 Z" fill="#ffffff"/>
-        <path d="M78 70 L78 136 L118 136 Q138 136 138 118 L138 80 Q138 70 126 70 Z" fill="#0a0a0a"/>
-        <circle cx="98" cy="86" r="5.5" fill="#ffffff"/>
-        <circle cx="113" cy="103" r="5.5" fill="#ffffff"/>
-        <circle cx="98" cy="120" r="5.5" fill="#ffffff"/>
+        <!-- Stylized D with flowing leaf-like right edge (white) -->
+        <path d="M62 60
+                 L62 140
+                 Q62 148 70 148
+                 L120 148
+                 Q150 148 154 122
+                 Q158 100 148 80
+                 Q140 64 134 56
+                 Q128 50 122 52
+                 Q116 54 116 60
+                 L116 70
+                 Q104 70 92 70
+                 L70 70
+                 Q66 70 62 60 Z"
+              fill="#ffffff"/>
+        <!-- Inner D cutout (black) revealing the dot face -->
+        <path d="M80 78
+                 L80 134
+                 L118 134
+                 Q138 134 142 116
+                 Q144 100 136 86
+                 Q130 78 122 78
+                 L80 78 Z"
+              fill="#0a0a0a"/>
+        <!-- Stylized leaf-curve sweep over right shoulder -->
+        <path d="M122 52 Q146 64 154 86 Q150 70 138 58 Q132 52 122 52 Z" fill="#0a0a0a"/>
+        <!-- 3 white dots in dice-3 pattern -->
+        <circle cx="98"  cy="92"  r="5.5" fill="#ffffff"/>
+        <circle cx="118" cy="106" r="5.5" fill="#ffffff"/>
+        <circle cx="104" cy="120" r="5.5" fill="#ffffff"/>
       </symbol>
     </defs>
   </svg>
@@ -561,8 +587,8 @@
             <span class="client-name">D Lounge</span>
           </div>
           <div class="client-card">
-            <div class="client-circle"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><use href="#lg-dice" xlink:href="#lg-dice"/></svg></div>
-            <span class="client-name">Dice Studio</span>
+            <div class="client-circle"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><use href="#lg-lobah" xlink:href="#lg-lobah"/></svg></div>
+            <span class="client-name">Lobah Game Company</span>
           </div>
 
           <!-- Set 2 (duplicate for seamless infinite scroll) -->
@@ -611,8 +637,8 @@
             <span class="client-name">D Lounge</span>
           </div>
           <div class="client-card" aria-hidden="true">
-            <div class="client-circle"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><use href="#lg-dice" xlink:href="#lg-dice"/></svg></div>
-            <span class="client-name">Dice Studio</span>
+            <div class="client-circle"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><use href="#lg-lobah" xlink:href="#lg-lobah"/></svg></div>
+            <span class="client-name">Lobah Game Company</span>
           </div>
         </div>
       </div>
