@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#7e3a3d"/>
+  <g transform="translate(100,80)" fill="#ead7c0" stroke="#ead7c0" stroke-width="0">
+    <!-- two side petals -->
+    <path d="M-20 6 C-25 -8 -15 -16 -2 -4 C-2 4 -10 10 -20 6 Z"/>
+    <path d="M20 6 C25 -8 15 -16 2 -4 C2 4 10 10 20 6 Z"/>
+    <!-- top dot (head) -->
+    <circle cx="0" cy="-12" r="4"/>
+    <!-- body -->
+    <path d="M-3 -4 L3 -4 L1 8 L-1 8 Z"/>
+  </g>
+  <g transform="translate(100,128)" text-anchor="middle" fill="#ead7c0" font-family="'Cormorant Garamond', serif">
+    <text font-size="22" letter-spacing="4" font-weight="500">MANTRA</text>
+    <text y="18" font-family="'Inter', sans-serif" font-size="8" letter-spacing="4">SPA &amp; BEAUTY</text>
+  </g>
+</svg>

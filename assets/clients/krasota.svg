@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#c9ad88"/>
+  <g transform="translate(100,108)" text-anchor="middle" fill="#ffffff">
+    <!-- script-style Krasota -->
+    <text font-family="'Cormorant Garamond', 'Brush Script MT', cursive" font-size="42" font-style="italic" font-weight="400">Krasota</text>
+    <!-- underline swash -->
+    <path d="M -55 8 Q 0 22 55 6" stroke="#ffffff" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <text y="34" font-family="'Inter', sans-serif" font-size="11" letter-spacing="3">Nail Salon</text>
+  </g>
+</svg>

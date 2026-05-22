@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#7a3530"/>
+  <g transform="translate(100,108)" text-anchor="middle">
+    <text font-family="'Aref Ruqaa', 'Amiri', 'Tajawal', serif" font-size="42" font-weight="500" fill="#d8a89a">حمام الهنا</text>
+    <text y="22" font-family="'Inter', sans-serif" font-size="8" fill="#5a8a6b" letter-spacing="3">HAMAM ALHANA</text>
+  </g>
+</svg>

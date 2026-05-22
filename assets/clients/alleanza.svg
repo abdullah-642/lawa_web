@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#3a2c20"/>
+  <g transform="translate(100,98)" fill="#d8bd96" text-anchor="middle">
+    <text font-family="'Cormorant Garamond', Georgia, serif" font-size="22" font-weight="500" letter-spacing="2.5">ALLEANZA</text>
+    <circle cx="40" cy="-6" r="1.6"/>
+    <path d="M40 -10 L40 -2 M36 -6 L44 -6" stroke="#d8bd96" stroke-width="0.8"/>
+    <text y="22" font-family="'Inter', sans-serif" font-size="11" letter-spacing="7">SALON</text>
+  </g>
+</svg>

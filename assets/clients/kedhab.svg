@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="kdhSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8c8a0"/>
+      <stop offset="1" stop-color="#c89469"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" fill="url(#kdhSky)"/>
+  <!-- dunes -->
+  <path d="M0 130 Q55 105 110 122 Q160 135 200 118 L200 200 L0 200 Z" fill="#a8703f" opacity="0.75"/>
+  <path d="M0 155 Q60 140 130 150 Q175 158 200 148 L200 200 L0 200 Z" fill="#7a4f2a" opacity="0.6"/>
+  <g transform="translate(100,108)" text-anchor="middle" fill="#f5e7d2">
+    <text font-family="'Tajawal', 'Cairo', serif" font-size="42" font-weight="500">خضاب</text>
+    <text y="22" font-family="'Inter', sans-serif" font-size="9" letter-spacing="6">K E D H A B</text>
+  </g>
+</svg>

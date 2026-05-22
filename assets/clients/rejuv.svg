@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="rejBg" cx="0.5" cy="0.45" r="0.6">
+      <stop offset="0" stop-color="#f0ede4"/>
+      <stop offset="1" stop-color="#dad6c8"/>
+    </radialGradient>
+  </defs>
+  <rect width="200" height="200" fill="url(#rejBg)"/>
+  <g transform="translate(100,105)" text-anchor="middle">
+    <text font-family="'Cormorant Garamond', serif" font-size="36" font-weight="500" fill="#bdb7a6" letter-spacing="1">REJUV</text>
+    <text y="20" font-family="'Inter', sans-serif" font-size="8" fill="#9d9785" letter-spacing="3">BEAUTY SALON</text>
+  </g>
+</svg>

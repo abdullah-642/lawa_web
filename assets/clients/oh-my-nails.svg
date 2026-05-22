@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#ffffff"/>
+  <g transform="translate(100,82)">
+    <!-- center upper petal (green) -->
+    <path d="M0 -22 C-9 -18 -9 -2 0 4 C9 -2 9 -18 0 -22" fill="#5a7359" stroke="#3d5240" stroke-width="1.2"/>
+    <!-- left petal (pink) -->
+    <path d="M-22 0 C-22 -10 -10 -16 -3 -8 C-6 0 -14 6 -22 0" fill="#d9a99a" stroke="#a87b6d" stroke-width="1.2"/>
+    <!-- right petal (tan) -->
+    <path d="M22 0 C22 -10 10 -16 3 -8 C6 0 14 6 22 0" fill="#a87b5a" stroke="#7b5640" stroke-width="1.2"/>
+    <!-- bottom pearl -->
+    <circle cx="0" cy="12" r="7" fill="#fff" stroke="#3d5240" stroke-width="1.4"/>
+  </g>
+  <g transform="translate(100,135)" text-anchor="middle" fill="#3d5240" font-family="'Inter', sans-serif">
+    <text font-size="14" letter-spacing="2.5">OH MY</text>
+    <text y="22" font-size="15" font-weight="700" letter-spacing="3">NAILS</text>
+  </g>
+</svg>

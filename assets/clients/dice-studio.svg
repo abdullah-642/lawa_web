@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="100" fill="#0a0a0a"/>
+  <!-- stylized D shell -->
+  <path d="M65 58 L65 142 Q65 148 71 148 L120 148 Q150 148 150 120 L150 80 Q150 58 130 58 Z" fill="#ffffff"/>
+  <!-- inner cut -->
+  <path d="M78 70 L78 136 L118 136 Q138 136 138 118 L138 80 Q138 70 126 70 Z" fill="#0a0a0a"/>
+  <!-- 3 dots like dice 3 -->
+  <circle cx="98" cy="86" r="5.5" fill="#ffffff"/>
+  <circle cx="113" cy="103" r="5.5" fill="#ffffff"/>
+  <circle cx="98" cy="120" r="5.5" fill="#ffffff"/>
+</svg>
