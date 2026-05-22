@@ -1,25 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 240" preserveAspectRatio="xMidYMid meet">
-  <!-- Liwa wordmark in italic Didone-style serif -->
-  <g fill="#0a0a0a">
-    <text x="22" y="142"
-          font-family="'Cormorant Garamond', 'Playfair Display', 'Times New Roman', Georgia, serif"
-          font-size="152" font-weight="500" font-style="italic"
-          letter-spacing="-3">Liwa</text>
-    <!-- Period -->
-    <circle cx="350" cy="135" r="7"/>
-    <!-- Small triangle accent next to the period -->
-    <path d="M362 142 L378 150 L362 158 Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" preserveAspectRatio="xMidYMid meet">
+  <!-- Liwa wordmark — high-contrast serif, upright -->
+  <text x="30" y="138"
+        font-family="'Cormorant Garamond', 'Playfair Display', 'Times New Roman', Georgia, serif"
+        font-size="148" font-weight="500"
+        letter-spacing="-2" fill="currentColor">Liwa</text>
+
+  <!-- Small triangle "period" -->
+  <path d="M348 124 L368 134 L348 144 Z" fill="currentColor"/>
+
+  <!-- Architectural mark: two trapezoidal columns forming a portal -->
+  <g transform="translate(440, 28)" fill="currentColor">
+    <path d="M0 0 L32 14 L32 142 L0 156 Z"/>
+    <path d="M62 14 L94 0 L94 156 L62 142 Z"/>
   </g>
 
-  <!-- Architectural door/pillar mark (mirrors the original glyph on the right) -->
-  <g transform="translate(454, 24)" fill="#0a0a0a">
-    <path d="M0 0 L28 10 L28 146 L0 156 Z"/>
-    <path d="M52 18 L80 28 L80 138 L52 148 Z"/>
-  </g>
-
-  <!-- "CONCEPT DESIGN" subtitle, widely letter-spaced -->
-  <text x="40" y="205"
+  <!-- CONCEPT DESIGN subtitle -->
+  <text x="32" y="195"
         font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
-        font-size="22" letter-spacing="16"
-        font-weight="400" fill="#0a0a0a">CONCEPT DESIGN</text>
+        font-size="22" letter-spacing="14"
+        font-weight="400" fill="currentColor">CONCEPT  DESIGN</text>
 </svg>

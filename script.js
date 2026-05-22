@@ -59,7 +59,7 @@
       gsap.to(".hero-title .line > span", {
         y: 0, duration: 1.2, ease: "expo.out", stagger: 0.15, delay: 0.1
       });
-      gsap.from(".hero-meta, .hero-sub, .hero-cta, .hero-stats", {
+      gsap.from(".hero-meta, .hero-sub, .hero-cta", {
         y: 30, opacity: 0, duration: 1, ease: "expo.out",
         stagger: 0.12, delay: 0.5
       });
@@ -69,19 +69,6 @@
         ScrollTrigger.create({
           trigger: el, start: "top 85%",
           onEnter: () => el.classList.add("in")
-        });
-      });
-
-      // Counters
-      document.querySelectorAll(".stat-num").forEach(el => {
-        const target = +el.dataset.count;
-        const obj = { v: 0 };
-        ScrollTrigger.create({
-          trigger: el, start: "top 90%", once: true,
-          onEnter: () => gsap.to(obj, {
-            v: target, duration: 2, ease: "power2.out",
-            onUpdate: () => el.firstChild.nodeValue = Math.floor(obj.v)
-          })
         });
       });
 
