@@ -49,7 +49,7 @@
 
   // ----------- Reveal on scroll -----------
   function initReveal() {
-    document.querySelectorAll(".section-head, .about-text, .about-visual, .exp-card, .step, .vision-box, .clients-grid, .contact-left, .contact-form")
+    document.querySelectorAll(".section-head, .about-narrative, .about-pullquote, .exp-card, .step, .vision-box, .clients-marquee, .contact-left, .contact-form")
       .forEach(el => el.classList.add("reveal"));
 
     if (window.gsap && window.ScrollTrigger) {
@@ -277,125 +277,6 @@
     animate();
   }
 
-  // ----------- About card 3D — Architectural arch portal (interior design motif) -----------
-  function initAboutCard() {
-    if (!window.THREE) return;
-    const mount = document.getElementById("aboutCube");
-    if (!mount) return;
-    const w = mount.clientWidth || 400;
-    const h = mount.clientHeight || 500;
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(w, h);
-    mount.appendChild(renderer.domElement);
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(36, w / h, 0.1, 100);
-    camera.position.set(1.8, 1.05, 4.4);
-    camera.lookAt(0, 0.05, 0);
-
-    // Lights — warm interior atmosphere
-    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
-    const key = new THREE.DirectionalLight(0xffffff, 1.1);
-    key.position.set(3.5, 5, 3);
-    scene.add(key);
-    const warm = new THREE.PointLight(0xd6a35a, 2.2, 6, 1.2);
-    warm.position.set(0, 0.55, 0.4);
-    scene.add(warm);
-    const rim = new THREE.DirectionalLight(0xb89968, 0.4);
-    rim.position.set(-3, 1, -2);
-    scene.add(rim);
-
-    const group = new THREE.Group();
-    const gold  = new THREE.MeshStandardMaterial({ color: 0xb89968, metalness: 0.92, roughness: 0.18 });
-    const stone = new THREE.MeshStandardMaterial({ color: 0xeae5d8, metalness: 0.08, roughness: 0.5 });
-    const wallMat = new THREE.MeshStandardMaterial({ color: 0x18171a, roughness: 0.92 });
-
-    // Marble floor
-    const floor = new THREE.Mesh(new THREE.PlaneGeometry(4.2, 4.2), stone);
-    floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -0.85;
-    group.add(floor);
-
-    // Back wall — adds depth like a real interior
-    const wall = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 2.6), wallMat);
-    wall.position.set(0, 0.35, -1);
-    group.add(wall);
-
-    // Two gold columns
-    const colGeo = new THREE.CylinderGeometry(0.07, 0.07, 1.42, 28);
-    const colL = new THREE.Mesh(colGeo, gold); colL.position.set(-0.66, -0.14, 0); group.add(colL);
-    const colR = new THREE.Mesh(colGeo, gold); colR.position.set( 0.66, -0.14, 0); group.add(colR);
-
-    // Column bases
-    const baseGeo = new THREE.BoxGeometry(0.22, 0.08, 0.22);
-    const baseL = new THREE.Mesh(baseGeo, gold); baseL.position.set(-0.66, -0.81, 0); group.add(baseL);
-    const baseR = new THREE.Mesh(baseGeo, gold); baseR.position.set( 0.66, -0.81, 0); group.add(baseR);
-
-    // Top arch (semi-circle torus)
-    const arch = new THREE.Mesh(
-      new THREE.TorusGeometry(0.66, 0.07, 18, 80, Math.PI),
-      gold
-    );
-    arch.position.set(0, 0.57, 0);
-    group.add(arch);
-
-    // Pendant lamp inside the arch
-    const pendant = new THREE.Mesh(
-      new THREE.SphereGeometry(0.075, 28, 28),
-      new THREE.MeshStandardMaterial({ color: 0xffd58a, emissive: 0xd6a35a, emissiveIntensity: 2.4 })
-    );
-    pendant.position.set(0, 0.18, 0.08);
-    group.add(pendant);
-
-    // Suspension wire
-    const wireGeo = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(0, 0.57, 0.08),
-      new THREE.Vector3(0, 0.18, 0.08)
-    ]);
-    group.add(new THREE.Line(wireGeo, new THREE.LineBasicMaterial({ color: 0x8c6f3f, transparent: true, opacity: 0.7 })));
-
-    // Floor accent — gold inlay strip at threshold
-    const inlay = new THREE.Mesh(
-      new THREE.BoxGeometry(1.55, 0.012, 0.04),
-      gold
-    );
-    inlay.position.set(0, -0.842, 0.32);
-    group.add(inlay);
-
-    scene.add(group);
-
-    let mx = 0, my = 0, tx = 0, ty = 0;
-    mount.addEventListener("mousemove", (e) => {
-      const r = mount.getBoundingClientRect();
-      tx = ((e.clientX - r.left) / r.width - 0.5) * 0.5;
-      ty = ((e.clientY - r.top) / r.height - 0.5) * 0.25;
-    });
-
-    const onResize = () => {
-      const nw = mount.clientWidth || 400, nh = mount.clientHeight || 500;
-      renderer.setSize(nw, nh);
-      camera.aspect = nw / nh;
-      camera.updateProjectionMatrix();
-    };
-    window.addEventListener("resize", onResize);
-
-    const clock = new THREE.Clock();
-    function loop() {
-      const t = clock.getElapsedTime();
-      mx += (tx - mx) * 0.08;
-      my += (ty - my) * 0.08;
-      // Subtle parallax — arch always faces forward, like a real space being viewed
-      group.rotation.y = Math.sin(t * 0.22) * 0.16 + mx * 0.35;
-      group.rotation.x = my * 0.18;
-      // Pendant flicker — warm breathing glow
-      pendant.material.emissiveIntensity = 2.2 + Math.sin(t * 1.6) * 0.45;
-      warm.intensity = 2.0 + Math.sin(t * 1.6) * 0.4;
-      renderer.render(scene, camera);
-      requestAnimationFrame(loop);
-    }
-    loop();
-  }
 
   // ----------- Tilt cards -----------
   document.querySelectorAll("[data-tilt]").forEach(card => {
@@ -412,9 +293,9 @@
 
   // Init 3D when ready
   if (document.readyState === "complete") {
-    init3D(); initAboutCard();
+    init3D();
   } else {
-    window.addEventListener("load", () => { init3D(); initAboutCard(); });
+    window.addEventListener("load", init3D);
   }
 
   // ----------- Projects: render real photos with branded fallback -----------
