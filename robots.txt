@@ -1,14 +1,53 @@
+# Liwa Concept Design — robots.txt
+# https://www.liwa1.com/
+
 User-agent: *
 Allow: /
-Disallow: /assets/projects/
-Disallow: /assets/clients/
+Allow: /assets/
+Disallow: /crm.html
+Disallow: /crm-login.html
+Disallow: /crm.js
+Disallow: /crm.css
+Disallow: /db.js
+Disallow: /supabase-config.js
+Disallow: /supabase-schema.sql
 
-# Sitemap location
-Sitemap: https://www.liwa1.com/sitemap.xml
+# Allow Googlebot full access to CSS/JS so it can render the page correctly
+User-agent: Googlebot
+Allow: /
+Allow: /*.css
+Allow: /*.js
+Allow: /*.svg
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.webp
 
-# Crawl-delay for polite bots
+# Allow Google Image Search
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /assets/clients/
+
+# Bing
 User-agent: Bingbot
+Allow: /
 Crawl-delay: 1
 
-User-agent: Googlebot
-Crawl-delay: 0
+# Yandex
+User-agent: Yandex
+Allow: /
+
+# Block AI training crawlers (optional — comment out if you want exposure)
+User-agent: GPTBot
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+
+# Sitemap
+Sitemap: https://www.liwa1.com/sitemap.xml
+
+# Host (helps clarify the canonical domain to Yandex)
+Host: https://www.liwa1.com
