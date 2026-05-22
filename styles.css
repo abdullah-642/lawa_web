@@ -621,7 +621,8 @@ button { background: none; border: 0; color: inherit; font: inherit; cursor: poi
 .client-card:hover .client-circle::after {
   box-shadow: inset 0 0 0 2px rgba(184,153,104,.45);
 }
-.client-circle img {
+.client-circle img,
+.client-circle > svg {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
 /* Fallback (image missing) — show monogram on cream */
