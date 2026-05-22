@@ -579,6 +579,9 @@ button { background: none; border: 0; color: inherit; font: inherit; cursor: poi
   position: relative;
   overflow: hidden;
   padding: 30px 0 16px;
+  min-height: 180px;
+  opacity: 1 !important;
+  direction: ltr;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
           mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
 }
@@ -587,6 +590,7 @@ button { background: none; border: 0; color: inherit; font: inherit; cursor: poi
   align-items: flex-start;
   gap: 44px;
   width: max-content;
+  transform: translateX(0);
   animation: clientsScroll 70s linear infinite;
   will-change: transform;
 }
@@ -649,13 +653,8 @@ button { background: none; border: 0; color: inherit; font: inherit; cursor: poi
 .client-card:hover .client-name { color: var(--ink); }
 
 @keyframes clientsScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-[dir="rtl"] .clients-track { animation-name: clientsScrollRTL; }
-@keyframes clientsScrollRTL {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 @media (max-width: 640px) {

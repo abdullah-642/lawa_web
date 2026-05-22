@@ -49,7 +49,7 @@
 
   // ----------- Reveal on scroll -----------
   function initReveal() {
-    document.querySelectorAll(".section-head, .about-narrative, .about-pullquote, .exp-card, .step, .vision-box, .clients-marquee, .contact-left, .contact-form")
+    document.querySelectorAll(".section-head, .about-narrative, .about-pullquote, .exp-card, .step, .vision-box, .contact-left, .contact-form")
       .forEach(el => el.classList.add("reveal"));
 
     if (window.gsap && window.ScrollTrigger) {
