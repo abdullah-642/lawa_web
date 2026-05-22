@@ -305,3 +305,36 @@
   .article-body { font-size: 16px; }
   .related-grid { grid-template-columns: 1fr; }
 }
+
+/* Price notice (replaces removed price tables) */
+.price-notice {
+  background: linear-gradient(135deg, #faf8f3 0%, #f1ede2 100%);
+  border-right: 4px solid #b89968;
+  padding: 22px 26px;
+  margin: 28px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(184, 153, 104, 0.08);
+}
+[dir="ltr"] .price-notice { border-right: none; border-left: 4px solid #b89968; }
+.price-notice p {
+  margin: 0;
+  line-height: 1.9;
+  font-size: 17px;
+  color: #2a2418;
+}
+.price-notice strong { color: #6b5430; }
+.price-notice a {
+  color: #b89968;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1.5px solid #b89968;
+  transition: color .25s, border-color .25s;
+}
+.price-notice a:hover {
+  color: #8c6f3f;
+  border-bottom-color: #8c6f3f;
+}
+@media (max-width: 640px) {
+  .price-notice { padding: 18px 20px; margin: 22px 0; }
+  .price-notice p { font-size: 15.5px; line-height: 1.85; }
+}
