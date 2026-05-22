@@ -9,5 +9,5 @@
 
 window.SUPABASE_CONFIG = {
   url: "https://wbkfuiwyqsccdkhkogur.supabase.co",
-  anonKey: "PASTE_YOUR_ANON_KEY_HERE"
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6India2Z1aXd5cXNjY2RraGtvZ3VyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNjM0NjYsImV4cCI6MjA4ODYzOTQ2Nn0.-AoOAfuMBUFf9OKoEmXEzSPbL_CBBYnStfhorAzDM78"
 };
