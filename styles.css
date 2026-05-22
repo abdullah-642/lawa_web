@@ -528,7 +528,7 @@ h1, h2, h3, h4 {
   transition: opacity .45s;
 }
 .exp-card:hover .exp-bg { transform: scale(1.08); }
-.exp-card[data-bg="spa"] .exp-bg { background-image: url("https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85"); }
+.exp-card[data-bg="spa"] .exp-bg { background-image: url("https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1200&q=85"); }
 .exp-card[data-bg="restaurant"] .exp-bg { background-image: url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=85"); }
 .exp-card[data-bg="office"] .exp-bg { background-image: url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"); }
 .exp-card[data-bg="residential"] .exp-bg { background-image: url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85"); }
