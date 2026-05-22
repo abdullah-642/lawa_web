@@ -529,7 +529,98 @@ button { background: none; border: 0; color: inherit; font: inherit; cursor: poi
   color: var(--mute); text-transform: uppercase;
 }
 
-/* ============== Clients ============== */
+/* ============== Clients — auto-scroll marquee ============== */
+.clients-marquee {
+  position: relative;
+  overflow: hidden;
+  padding: 30px 0 16px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+}
+.clients-track {
+  display: flex;
+  align-items: flex-start;
+  gap: 44px;
+  width: max-content;
+  animation: clientsScroll 70s linear infinite;
+  will-change: transform;
+}
+.clients-marquee:hover .clients-track { animation-play-state: paused; }
+.client-card {
+  flex: 0 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  width: 134px;
+  text-decoration: none; color: inherit;
+}
+.client-circle {
+  width: 118px; height: 118px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  transition: transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s, border-color .45s;
+  box-shadow: 0 4px 14px rgba(0,0,0,.06);
+}
+.client-circle::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  box-shadow: inset 0 0 0 2px rgba(184,153,104,0);
+  transition: box-shadow .45s;
+}
+.client-card:hover .client-circle {
+  transform: translateY(-5px) scale(1.06);
+  border-color: var(--accent);
+  box-shadow: 0 14px 36px rgba(184,153,104,.22);
+}
+.client-card:hover .client-circle::after {
+  box-shadow: inset 0 0 0 2px rgba(184,153,104,.45);
+}
+.client-circle img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+/* Fallback (image missing) — show monogram on cream */
+.client-circle.cc-text { background: linear-gradient(135deg, #f6f4ef 0%, #ece7d8 100%); }
+.client-circle.cc-text::before {
+  content: attr(data-fb);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 50px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 1;
+}
+.client-name {
+  font-size: 12.5px;
+  letter-spacing: .05em;
+  color: var(--mute);
+  font-family: 'Inter', 'Tajawal', sans-serif;
+  text-align: center;
+  line-height: 1.45;
+  transition: color .35s;
+  max-width: 140px;
+}
+.client-card:hover .client-name { color: var(--ink); }
+
+@keyframes clientsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+[dir="rtl"] .clients-track { animation-name: clientsScrollRTL; }
+@keyframes clientsScrollRTL {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@media (max-width: 640px) {
+  .clients-track { gap: 28px; animation-duration: 45s; }
+  .client-card { width: 102px; }
+  .client-circle { width: 90px; height: 90px; }
+  .client-circle.cc-text::before { font-size: 38px; }
+  .client-name { font-size: 11.5px; }
+}
+
+/* Legacy slot (kept for fallback markup elsewhere) */
 .clients-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
   background: var(--line);

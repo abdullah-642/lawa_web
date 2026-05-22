@@ -424,16 +424,108 @@
         </p>
       </div>
 
-      <div class="clients-grid" id="clientsGrid">
-        <!-- Placeholder slots — replace src with client logos -->
-        <div class="client-slot"><span>Client Logo</span></div>
-        <div class="client-slot"><span>Client Logo</span></div>
-        <div class="client-slot"><span>Client Logo</span></div>
-        <div class="client-slot"><span>Client Logo</span></div>
-        <div class="client-slot"><span>Client Logo</span></div>
-        <div class="client-slot"><span>Client Logo</span></div>
-        <div class="client-slot"><span>Client Logo</span></div>
-        <div class="client-slot"><span>Client Logo</span></div>
+      <div class="clients-marquee" id="clientsMarquee">
+        <div class="clients-track">
+          <!-- Set 1 -->
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/alleanza.png" alt="Alleanza Salon" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','A')" /></div>
+            <span class="client-name">Alleanza Salon</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/oh-my-nails.png" alt="Oh My Nails" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','O')" /></div>
+            <span class="client-name">Oh My Nails</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/kedhab.png" alt="Kedhab" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','K')" /></div>
+            <span class="client-name">Kedhab — خضاب</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/mantra-spa.png" alt="Mantra Spa & Beauty" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','M')" /></div>
+            <span class="client-name">Mantra Spa &amp; Beauty</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/flex-gym.png" alt="Flex Gym" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','F')" /></div>
+            <span class="client-name">Flex</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/krasota.png" alt="Krasota Nail Salon" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','K')" /></div>
+            <span class="client-name">Krasota Nail Salon</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/vida-salon.png" alt="Vida Salon" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','V')" /></div>
+            <span class="client-name">Vida Salon</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/hamam-alhana.png" alt="Hamam Alhana" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','ح')" /></div>
+            <span class="client-name">Hamam Alhana — حمام الهنا</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/spa-alhana.png" alt="Spa Alhana" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','س')" /></div>
+            <span class="client-name">Spa Alhana — سبا الهنا</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/rejuv.png" alt="Rejuv Beauty Salon" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','R')" /></div>
+            <span class="client-name">Rejuv Beauty Salon</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/d-lounge.png" alt="D Lounge" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','D')" /></div>
+            <span class="client-name">D Lounge</span>
+          </div>
+          <div class="client-card">
+            <div class="client-circle"><img src="assets/clients/dice-studio.png" alt="Dice Studio" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','D')" /></div>
+            <span class="client-name">Dice Studio</span>
+          </div>
+
+          <!-- Set 2 (duplicate for seamless infinite scroll) -->
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/alleanza.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','A')" /></div>
+            <span class="client-name">Alleanza Salon</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/oh-my-nails.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','O')" /></div>
+            <span class="client-name">Oh My Nails</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/kedhab.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','K')" /></div>
+            <span class="client-name">Kedhab — خضاب</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/mantra-spa.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','M')" /></div>
+            <span class="client-name">Mantra Spa &amp; Beauty</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/flex-gym.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','F')" /></div>
+            <span class="client-name">Flex</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/krasota.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','K')" /></div>
+            <span class="client-name">Krasota Nail Salon</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/vida-salon.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','V')" /></div>
+            <span class="client-name">Vida Salon</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/hamam-alhana.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','ح')" /></div>
+            <span class="client-name">Hamam Alhana — حمام الهنا</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/spa-alhana.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','س')" /></div>
+            <span class="client-name">Spa Alhana — سبا الهنا</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/rejuv.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','R')" /></div>
+            <span class="client-name">Rejuv Beauty Salon</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/d-lounge.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','D')" /></div>
+            <span class="client-name">D Lounge</span>
+          </div>
+          <div class="client-card" aria-hidden="true">
+            <div class="client-circle"><img src="assets/clients/dice-studio.png" alt="" onerror="this.style.display='none';this.parentElement.classList.add('cc-text');this.parentElement.setAttribute('data-fb','D')" /></div>
+            <span class="client-name">Dice Studio</span>
+          </div>
+        </div>
       </div>
 
     </div>
