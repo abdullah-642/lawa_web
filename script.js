@@ -28,7 +28,13 @@
 
   // ----------- Sticky Header -----------
   const header = document.getElementById("siteHeader");
-  const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 60);
+  const hero = document.getElementById("hero");
+  const onScroll = () => {
+    header.classList.toggle("scrolled", window.scrollY > 60);
+    // Flip header to light theme once we leave the dark hero
+    const heroHeight = hero ? hero.offsetHeight : 600;
+    header.classList.toggle("on-light", window.scrollY > heroHeight - 100);
+  };
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
