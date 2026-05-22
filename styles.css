@@ -45,7 +45,7 @@ ul, ol { list-style: none; }
   --arabic: 'Tajawal', 'Cairo', system-ui, sans-serif;
 
   --gutter: clamp(20px, 5vw, 60px);
-  --section-y: clamp(70px, 10vw, 140px);
+  --section-y: clamp(60px, 7vw, 100px);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -346,11 +346,11 @@ h1, h2, h3, h4 {
 [data-lang="ar"] .about-grid p { font-family: var(--arabic); font-size: clamp(15px, 1.4vw, 17px); line-height: 1.95; }
 
 .about-quote {
-  margin-top: 60px;
-  padding: 50px var(--gutter);
-  border-block: 1px solid var(--line);
+  margin-top: 50px;
+  padding: 44px var(--gutter);
+  border-top: 1px solid var(--line);
   text-align: center;
-  background: linear-gradient(180deg, transparent 0%, var(--bg-2) 50%, transparent 100%);
+  background: linear-gradient(180deg, transparent 0%, var(--bg-2) 60%, transparent 100%);
 }
 .about-quote .q-mark {
   font-family: var(--serif);
