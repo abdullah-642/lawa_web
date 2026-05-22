@@ -376,7 +376,7 @@
   // ----------- Projects: render real photos with branded fallback -----------
   const PROJECTS = [
     {
-      cat: { ar: "إسبا & عناية", en: "Spa & Wellness" },
+      cat: { ar: "سبا & عناية", en: "Spa & Wellness" },
       title: { ar: "جناح الاسترخاء الملكي", en: "Royal Wellness Suite" },
       loc: { ar: "الرياض · 2024", en: "Riyadh · 2024" },
       // Spa room interior with stones, candles

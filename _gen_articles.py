@@ -652,7 +652,7 @@ def slug_html(art, idx_total):
         if not rel_title:
             # Existing pillar articles
             existing = {
-                "tasmim-spa-hammam": ("تصميم الإسبا والحمامات المغربية", "إسبا"),
+                "tasmim-spa-hammam": ("تصميم السبا والحمامات المغربية", "سبا"),
                 "tasmim-salon-tajmeel": ("تصميم صالونات التجميل ومراكز العناية", "صالونات"),
                 "mqawl-decor-riyadh": ("أفضل مقاول ديكور في الرياض 2026", "دليل"),
                 "shrekat-decor-dakhili": ("شركات الديكور والتصميم الداخلي", "مرجعي"),
