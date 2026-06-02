@@ -24,8 +24,8 @@ const I18N = {
     "hero.cta2": "تعرَّف على خدماتنا",
 
     "about.kicker": "01 — من نحن",
-    "about.title1": "خبرةٌ هندسية",
-    "about.title2": "بمعايير راسخة.",
+    "about.title1": "شركة",
+    "about.title2": "لواء كونسبت.",
     "about.p1": "لواء كونسبت — علامة تجارية متخصصة ضمن مجموعة غرين زون، تُقدّم خدمات التصميم الداخلي والتنفيذ للمشاريع التجارية والسكنية في المملكة العربية السعودية منذ عام 2017.",
     "about.p2": "تنطلق فلسفتنا من قناعة راسخة: المكان الاستثنائي لا يُقاس بجمالياته فحسب، بل بدقّة هندسته وإحكام تنفيذه والاهتمام الصادق بكل تفصيلة.",
     "about.p3": "نرافق عملاءنا في كل مرحلة، من الفكرة الأولى حتى لحظة تسليم المفتاح، بإشراف مباشر يضمن أن ما صُمِّم على الورق يُسلَّم على أرض الواقع بلا تنازلات.",
@@ -154,8 +154,8 @@ const I18N = {
     "hero.scroll": "Scroll to explore",
 
     "about.kicker": "01 — About",
-    "about.title1": "Engineering space",
-    "about.title2": "with a designer's eye.",
+    "about.title1": "Liwa",
+    "about.title2": "Concept Design.",
     "about.p1": "Liwa Concept is a specialized brand under Green Zone Co., operating in interior design and execution for commercial and residential projects since 2017.",
     "about.p2": "We were founded on a firm conviction: that exceptional space is not limited to aesthetic beauty — it is built on precise engineering, meticulous execution, and a genuine attention to every detail.",
     "about.p3": "We accompany our clients through every phase, from the first idea to the moment of key handover, with direct supervision ensuring that what was designed on paper is delivered on the ground without compromise.",
