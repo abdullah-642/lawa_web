@@ -1,0 +1,272 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <pattern id="cadGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#b89968" stroke-width="0.4" opacity="0.18"/>
+    </pattern>
+    <pattern id="cadGridFine" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M 8 0 L 0 0 0 8" fill="none" stroke="#b89968" stroke-width="0.2" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- Cream paper background -->
+  <rect width="800" height="1000" fill="#f6efe2"/>
+  <rect width="800" height="1000" fill="url(#cadGridFine)"/>
+  <rect width="800" height="1000" fill="url(#cadGrid)"/>
+
+  <!-- Outer drawing border -->
+  <rect x="40" y="40" width="720" height="920" fill="none" stroke="#1f1611" stroke-width="1" opacity="0.6"/>
+  <rect x="48" y="48" width="704" height="904" fill="none" stroke="#1f1611" stroke-width="0.4" opacity="0.4"/>
+
+  <!-- Title block (top-left) -->
+  <g transform="translate(70, 78)" font-family="'Inter', 'Helvetica Neue', sans-serif" fill="#1f1611">
+    <text font-size="14" font-weight="600" letter-spacing="3.5">LIWA . CONCEPT DESIGN</text>
+    <text y="22" font-size="8.5" letter-spacing="2.6" opacity="0.65">ARCHITECTURAL FLOOR PLAN  /  RESIDENCE 01</text>
+    <line x1="0" y1="34" x2="180" y2="34" stroke="#b89968" stroke-width="1"/>
+    <text y="52" font-size="7" letter-spacing="2" opacity="0.55">DRAWING DWG-001  ·  REV. A  ·  SCALE 1:100</text>
+  </g>
+
+  <!-- Compass (top-right) -->
+  <g transform="translate(700, 100)">
+    <circle r="26" fill="none" stroke="#1f1611" stroke-width="0.7"/>
+    <circle r="20" fill="none" stroke="#1f1611" stroke-width="0.3" opacity="0.45"/>
+    <line x1="-26" y1="0" x2="26" y2="0" stroke="#1f1611" stroke-width="0.3" opacity="0.4"/>
+    <line x1="0" y1="-26" x2="0" y2="26" stroke="#1f1611" stroke-width="0.3" opacity="0.4"/>
+    <path d="M 0 -20 L 7 10 L 0 5 L -7 10 Z" fill="#1f1611"/>
+    <text y="-32" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#1f1611">N</text>
+  </g>
+
+  <!-- Scale bar (below compass) -->
+  <g transform="translate(640, 155)" font-family="'Inter', sans-serif" fill="#1f1611">
+    <line x1="0" y1="0" x2="120" y2="0" stroke="#1f1611" stroke-width="1"/>
+    <line x1="0" y1="-4" x2="0" y2="4" stroke="#1f1611" stroke-width="1"/>
+    <line x1="40" y1="-4" x2="40" y2="4" stroke="#1f1611" stroke-width="1"/>
+    <line x1="80" y1="-4" x2="80" y2="4" stroke="#1f1611" stroke-width="1"/>
+    <line x1="120" y1="-4" x2="120" y2="4" stroke="#1f1611" stroke-width="1"/>
+    <rect x="0" y="-2.5" width="40" height="2.5" fill="#1f1611"/>
+    <rect x="80" y="-2.5" width="40" height="2.5" fill="#1f1611"/>
+    <text x="0" y="16" font-size="7" opacity="0.65">0</text>
+    <text x="40" y="16" text-anchor="middle" font-size="7" opacity="0.65">2</text>
+    <text x="80" y="16" text-anchor="middle" font-size="7" opacity="0.65">4</text>
+    <text x="120" y="16" text-anchor="end" font-size="7" opacity="0.65">6 m</text>
+  </g>
+
+  <!-- ============ FLOOR PLAN ============ -->
+
+  <!-- Outer wall (thick) -->
+  <g stroke="#1f1611" fill="none" stroke-linejoin="miter">
+    <path d="M 110 240 L 690 240 L 690 880 L 110 880 Z" stroke-width="6"/>
+    <!-- Subtle wall fill -->
+    <path d="M 110 240 L 690 240 L 690 880 L 110 880 Z M 122 252 L 122 868 L 678 868 L 678 252 Z" fill="#1f1611" opacity="0.04" fill-rule="evenodd"/>
+  </g>
+
+  <!-- Inner walls -->
+  <g stroke="#1f1611" fill="none" stroke-linejoin="miter" stroke-width="3.5">
+    <!-- Vertical divider — splits left rooms from living -->
+    <line x1="350" y1="240" x2="350" y2="500"/>
+    <line x1="350" y1="565" x2="350" y2="700"/>
+    <!-- Vertical divider — bedroom -->
+    <line x1="500" y1="700" x2="500" y2="880"/>
+    <!-- Horizontal divider top -->
+    <line x1="110" y1="420" x2="350" y2="420"/>
+    <!-- Horizontal divider middle -->
+    <line x1="110" y1="700" x2="350" y2="700"/>
+    <line x1="430" y1="700" x2="690" y2="700"/>
+    <!-- Bathroom walls -->
+    <rect x="350" y="700" width="80" height="100" fill="none"/>
+  </g>
+
+  <!-- Windows (3-line gap in wall) -->
+  <g stroke="#1f1611" fill="none" stroke-width="0.8">
+    <!-- Top wall windows (kitchen + entry side) -->
+    <rect x="160" y="237" width="100" height="6" fill="#f6efe2"/>
+    <line x1="160" y1="237" x2="260" y2="237"/>
+    <line x1="160" y1="240" x2="260" y2="240"/>
+    <line x1="160" y1="243" x2="260" y2="243"/>
+    <!-- Living room wide window -->
+    <rect x="420" y="237" width="220" height="6" fill="#f6efe2"/>
+    <line x1="420" y1="237" x2="640" y2="237"/>
+    <line x1="420" y1="240" x2="640" y2="240"/>
+    <line x1="420" y1="243" x2="640" y2="243"/>
+    <!-- Right wall (terrace doors) -->
+    <rect x="687" y="280" width="6" height="160" fill="#f6efe2"/>
+    <line x1="687" y1="280" x2="687" y2="440"/>
+    <line x1="690" y1="280" x2="690" y2="440"/>
+    <line x1="693" y1="280" x2="693" y2="440"/>
+    <!-- Bedroom window -->
+    <rect x="540" y="877" width="100" height="6" fill="#f6efe2"/>
+    <line x1="540" y1="877" x2="640" y2="877"/>
+    <line x1="540" y1="880" x2="640" y2="880"/>
+    <line x1="540" y1="883" x2="640" y2="883"/>
+  </g>
+
+  <!-- Doors (arcs + swing) -->
+  <g stroke="#1f1611" fill="none">
+    <!-- Entry door -->
+    <line x1="180" y1="877" x2="180" y2="883" stroke-width="6" stroke="#f6efe2"/>
+    <line x1="180" y1="877" x2="220" y2="877" stroke-width="2"/>
+    <path d="M 180 877 A 40 40 0 0 0 220 837" stroke-width="0.6" opacity="0.55"/>
+    <!-- Kitchen to living -->
+    <line x1="350" y1="350" x2="350" y2="390" stroke-width="6" stroke="#f6efe2"/>
+    <path d="M 350 390 A 40 40 0 0 1 390 350" stroke-width="0.6" opacity="0.55"/>
+    <line x1="350" y1="350" x2="350" y2="310" stroke-width="2"/>
+    <!-- Entry to living -->
+    <line x1="350" y1="600" x2="350" y2="640" stroke-width="6" stroke="#f6efe2"/>
+    <path d="M 350 640 A 40 40 0 0 1 390 600" stroke-width="0.6" opacity="0.55"/>
+    <!-- Bath door -->
+    <line x1="380" y1="700" x2="420" y2="700" stroke-width="6" stroke="#f6efe2"/>
+    <path d="M 420 700 A 40 40 0 0 1 380 740" stroke-width="0.6" opacity="0.55"/>
+    <!-- Bedroom door -->
+    <line x1="500" y1="740" x2="500" y2="780" stroke-width="6" stroke="#f6efe2"/>
+    <path d="M 500 780 A 40 40 0 0 0 540 740" stroke-width="0.6" opacity="0.55"/>
+  </g>
+
+  <!-- ============ FURNITURE (gold lines) ============ -->
+  <g stroke="#b89968" fill="none" stroke-width="1.2">
+    <!-- LIVING ROOM (large) -->
+    <!-- L-shaped sofa -->
+    <path d="M 430 290 L 580 290 L 580 360 L 510 360 L 510 410 L 430 410 Z M 440 300 L 570 300 L 570 350 L 500 350 L 500 400 L 440 400 Z"/>
+    <!-- Coffee table -->
+    <rect x="455" y="430" width="80" height="40" rx="2"/>
+    <line x1="465" y1="440" x2="525" y2="460" stroke-width="0.4"/>
+    <line x1="465" y1="460" x2="525" y2="440" stroke-width="0.4"/>
+    <!-- TV unit on right wall -->
+    <rect x="610" y="450" width="60" height="120" rx="2"/>
+    <line x1="615" y1="510" x2="665" y2="510" stroke-width="0.5"/>
+    <!-- Side chair -->
+    <circle cx="600" cy="330" r="22"/>
+    <path d="M 583 327 A 22 22 0 0 1 617 327" stroke-width="0.5"/>
+    <!-- Dining area, small -->
+    <rect x="430" y="600" width="120" height="50" rx="2"/>
+    <circle cx="445" cy="595" r="10"/>
+    <circle cx="475" cy="595" r="10"/>
+    <circle cx="505" cy="595" r="10"/>
+    <circle cx="535" cy="595" r="10"/>
+    <circle cx="445" cy="660" r="10"/>
+    <circle cx="475" cy="660" r="10"/>
+    <circle cx="505" cy="660" r="10"/>
+    <circle cx="535" cy="660" r="10"/>
+
+    <!-- KITCHEN -->
+    <!-- Counter -->
+    <rect x="125" y="255" width="20" height="160"/>
+    <!-- Stove -->
+    <rect x="125" y="270" width="20" height="22"/>
+    <circle cx="130" cy="277" r="2.5"/>
+    <circle cx="140" cy="277" r="2.5"/>
+    <circle cx="130" cy="287" r="2.5"/>
+    <circle cx="140" cy="287" r="2.5"/>
+    <!-- Sink -->
+    <rect x="125" y="310" width="20" height="28" rx="2"/>
+    <circle cx="135" cy="324" r="1.8"/>
+    <!-- Island -->
+    <rect x="190" y="320" width="120" height="40" rx="2"/>
+    <line x1="200" y1="330" x2="300" y2="350" stroke-width="0.4"/>
+
+    <!-- ENTRY -->
+    <!-- Welcome mat / runner -->
+    <rect x="180" y="780" width="100" height="60" stroke-width="0.5"/>
+    <line x1="190" y1="790" x2="270" y2="830" stroke-width="0.4"/>
+    <line x1="190" y1="830" x2="270" y2="790" stroke-width="0.4"/>
+    <!-- Console table -->
+    <rect x="135" y="445" width="20" height="70" stroke-width="0.8"/>
+
+    <!-- BATH -->
+    <!-- Bathtub -->
+    <rect x="360" y="710" width="60" height="35" rx="6"/>
+    <!-- Sink -->
+    <ellipse cx="395" cy="770" rx="14" ry="9"/>
+    <!-- Toilet -->
+    <rect x="360" y="755" width="22" height="30" rx="6" stroke-width="0.8"/>
+
+    <!-- BEDROOM -->
+    <!-- King bed -->
+    <rect x="540" y="730" width="100" height="80" rx="3"/>
+    <rect x="540" y="730" width="100" height="22" rx="3" stroke-width="0.5" opacity="0.7"/>
+    <rect x="548" y="736" width="38" height="12" rx="2" stroke-width="0.4"/>
+    <rect x="594" y="736" width="38" height="12" rx="2" stroke-width="0.4"/>
+    <!-- Nightstands -->
+    <rect x="510" y="740" width="22" height="22"/>
+    <rect x="648" y="740" width="22" height="22"/>
+    <!-- Wardrobe -->
+    <rect x="510" y="830" width="160" height="40"/>
+    <line x1="550" y1="830" x2="550" y2="870" stroke-width="0.5"/>
+    <line x1="590" y1="830" x2="590" y2="870" stroke-width="0.5"/>
+    <line x1="630" y1="830" x2="630" y2="870" stroke-width="0.5"/>
+  </g>
+
+  <!-- ============ ROOM LABELS ============ -->
+  <g font-family="'Inter', 'Helvetica Neue', sans-serif" fill="#1f1611" text-anchor="middle">
+    <g transform="translate(550, 530)">
+      <text font-size="15" font-weight="600" letter-spacing="3.5">LIVING</text>
+      <text y="18" font-size="8" opacity="0.6" letter-spacing="1.5">28.5 m²</text>
+    </g>
+    <g transform="translate(220, 330)">
+      <text font-size="11" font-weight="600" letter-spacing="3">KITCHEN</text>
+      <text y="14" font-size="7" opacity="0.6" letter-spacing="1.5">14.2 m²</text>
+    </g>
+    <g transform="translate(220, 555)">
+      <text font-size="11" font-weight="600" letter-spacing="3">DINING</text>
+      <text y="14" font-size="7" opacity="0.6" letter-spacing="1.5">12.0 m²</text>
+    </g>
+    <g transform="translate(220, 765)">
+      <text font-size="11" font-weight="600" letter-spacing="3">ENTRY</text>
+      <text y="14" font-size="7" opacity="0.6" letter-spacing="1.5">8.4 m²</text>
+    </g>
+    <g transform="translate(585, 825)">
+      <text font-size="11" font-weight="600" letter-spacing="3">BEDROOM</text>
+      <text y="14" font-size="7" opacity="0.6" letter-spacing="1.5">18.0 m²</text>
+    </g>
+    <g transform="translate(390, 822)">
+      <text font-size="8" font-weight="600" letter-spacing="2">BATH</text>
+      <text y="11" font-size="6" opacity="0.6" letter-spacing="1.5">5.6 m²</text>
+    </g>
+  </g>
+
+  <!-- ============ DIMENSIONS ============ -->
+  <g font-family="'Inter', sans-serif" fill="#1f1611" stroke="#1f1611">
+    <!-- Top dimension -->
+    <g opacity="0.7">
+      <line x1="110" y1="195" x2="690" y2="195" stroke-width="0.4"/>
+      <line x1="110" y1="190" x2="110" y2="200" stroke-width="0.6"/>
+      <line x1="350" y1="192" x2="350" y2="198" stroke-width="0.5"/>
+      <line x1="690" y1="190" x2="690" y2="200" stroke-width="0.6"/>
+      <path d="M 113 192 L 120 195 L 113 198 Z" fill="#1f1611"/>
+      <path d="M 687 192 L 680 195 L 687 198 Z" fill="#1f1611"/>
+    </g>
+    <text x="230" y="187" text-anchor="middle" font-size="8" letter-spacing="1" fill="#1f1611" opacity="0.75">4.80 m</text>
+    <text x="520" y="187" text-anchor="middle" font-size="8" letter-spacing="1" fill="#1f1611" opacity="0.75">6.80 m</text>
+
+    <!-- Left dimension -->
+    <g opacity="0.7">
+      <line x1="80" y1="240" x2="80" y2="880" stroke-width="0.4"/>
+      <line x1="75" y1="240" x2="85" y2="240" stroke-width="0.6"/>
+      <line x1="77" y1="420" x2="83" y2="420" stroke-width="0.5"/>
+      <line x1="77" y1="700" x2="83" y2="700" stroke-width="0.5"/>
+      <line x1="75" y1="880" x2="85" y2="880" stroke-width="0.6"/>
+      <path d="M 77 243 L 80 250 L 83 243 Z" fill="#1f1611"/>
+      <path d="M 77 877 L 80 870 L 83 877 Z" fill="#1f1611"/>
+    </g>
+    <g font-size="8" letter-spacing="1" fill="#1f1611" opacity="0.75">
+      <text transform="rotate(-90 65 330)" x="65" y="330" text-anchor="middle">3.60 m</text>
+      <text transform="rotate(-90 65 560)" x="65" y="560" text-anchor="middle">5.60 m</text>
+      <text transform="rotate(-90 65 790)" x="65" y="790" text-anchor="middle">3.60 m</text>
+    </g>
+  </g>
+
+  <!-- ============ ANNOTATIONS ============ -->
+  <g font-family="'Inter', sans-serif" font-size="6.5" fill="#1f1611" opacity="0.55" letter-spacing="1">
+    <!-- Window labels -->
+    <text x="210" y="223" text-anchor="middle">W-01</text>
+    <text x="530" y="223" text-anchor="middle">W-02 · PANORAMIC</text>
+    <text x="703" y="365" text-anchor="middle" transform="rotate(90 703 365)">TERRACE DOORS</text>
+    <text x="590" y="900" text-anchor="middle">W-03</text>
+  </g>
+
+  <!-- Footer corner notes -->
+  <g transform="translate(70, 935)" font-family="'Inter', sans-serif" fill="#1f1611" opacity="0.55">
+    <text font-size="7" letter-spacing="2.5">SHEET 1 OF 1  ·  DRAWN BY LIWA STUDIO  ·  ALL DIMENSIONS IN METERS</text>
+  </g>
+  <g transform="translate(720, 935)" font-family="'Inter', sans-serif" fill="#1f1611" opacity="0.55" text-anchor="end">
+    <text font-size="7" letter-spacing="2">© LIWA . 2026</text>
+  </g>
+</svg>
