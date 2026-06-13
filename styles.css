@@ -530,13 +530,19 @@ h1, h2, h3, h4 {
 [data-lang="ar"] .about-quote .q-label { font-family: var(--arabic); font-size: 12px; letter-spacing: 0.18em; }
 
 @media (min-width: 880px) {
-  .about-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
+  .about-grid:not(.about-grid--text) { grid-template-columns: 1fr 1fr; gap: 60px; }
   .about-image { aspect-ratio: 1; }
 }
 @media (min-width: 1200px) {
-  .about-grid { grid-template-columns: 1.1fr 1fr; gap: 80px; }
+  .about-grid:not(.about-grid--text) { grid-template-columns: 1.1fr 1fr; gap: 80px; }
   .about-image { aspect-ratio: 4/5; }
 }
+
+/* Text-only about layout — centered single column */
+.about-grid--text { grid-template-columns: 1fr; max-width: var(--text-max); }
+.about-grid--text .about-text { max-width: 100%; }
+.about-grid--text .about-text p { font-size: clamp(16px, 1.4vw, 18px); line-height: 1.95; }
+[data-lang="ar"] .about-grid--text .about-text p { font-size: clamp(15.5px, 1.4vw, 17.5px); line-height: 2; }
 
 /* ============== Expertise (luxury image cards) ============== */
 .exp-grid {
@@ -1048,8 +1054,14 @@ h1, h2, h3, h4 {
 .exp-tag, .exp-cat, .ac-3d { display: none; }
 
 /* ============== Overflow protection ============== */
+html, body { overflow-x: hidden; max-width: 100%; }
 .hero, .section, .vision-section, .ig-section, .clients-section { max-width: 100%; overflow-x: clip; }
-.hero-title, .section-title, .hero-sub, .vision-quote { word-break: break-word; overflow-wrap: anywhere; }
+.hero-title, .section-title, .hero-sub, .vision-quote {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+[data-lang="ar"] .hero-title, [data-lang="ar"] .section-title { hyphens: none; }
 
 /* ============== Responsive breakpoints ============== */
 /* Tablet landscape (1024px and below) */
