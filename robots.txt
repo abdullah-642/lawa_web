@@ -29,19 +29,38 @@ Crawl-delay: 1
 User-agent: Yandex
 Allow: /
 
-# Block AI training crawlers (optional — comment out if you want exposure)
+# AI search engines (GEO) — ALLOWED so the brand can be cited in
+# ChatGPT, Perplexity, Claude, and Google AI Overviews / Gemini.
 User-agent: GPTBot
-Disallow: /
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
 User-agent: ClaudeBot
-Disallow: /
-User-agent: CCBot
-Disallow: /
+Allow: /
+User-agent: Claude-User
+Allow: /
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+
+# AI guide
+LLM: https://www.liwa1.com/llms.txt
 
 # Sitemaps
 Sitemap: https://www.liwa1.com/sitemap.xml
 Sitemap: https://www.liwa1.com/sitemap-images.xml
+Sitemap: https://www.liwa1.com/sitemap-locations.xml
 Sitemap: https://www.liwa1.com/sitemap-index.xml
 
 # Host (helps clarify the canonical domain to Yandex)
