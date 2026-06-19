@@ -44,6 +44,7 @@ const I18N = {
     "exp.c3.p": "تصميم وتنفيذ المكاتب التنفيذية ومقرات الشركات بأسلوب يجمع بين الكفاءة الوظيفية والرُقي البصري.",
     "exp.c4.t": "المساحات السكنية",
     "exp.c4.p": "تنفيذ الفلل والقصور بلمسات راقية تعكس شخصية المالك وذوقه الرفيع، بأرقى مستويات الفخامة.",
+    "exp.more": "استكشف الخدمة",
 
     "meth.kicker": "03 — منهجيتنا",
     "meth.title1": "رحلة المشروع",
@@ -174,6 +175,7 @@ const I18N = {
     "exp.c3.p": "Offices and corporate headquarters with functional design that drives productivity and reflects brand identity.",
     "exp.c4.t": "Hospitality Finishes",
     "exp.c4.p": "Global hospitality standards executed to match the expectations of luxury hotels.",
+    "exp.more": "Explore service",
 
     "meth.kicker": "03 — Process",
     "meth.title1": "We don't believe in",

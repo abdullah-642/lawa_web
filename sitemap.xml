@@ -8,6 +8,48 @@
 
   <url><loc>https://www.liwa1.com/blog.html</loc><lastmod>2026-05-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
 
+  <!-- Service landing pages (AR + EN) -->
+  <url><loc>https://www.liwa1.com/services/spa.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.liwa1.com/services/spa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.liwa1.com/en/services/spa.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.liwa1.com/services/spa.html"/>
+  </url>
+  <url><loc>https://www.liwa1.com/services/restaurants.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.liwa1.com/services/restaurants.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.liwa1.com/en/services/restaurants.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.liwa1.com/services/restaurants.html"/>
+  </url>
+  <url><loc>https://www.liwa1.com/services/offices.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.liwa1.com/services/offices.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.liwa1.com/en/services/offices.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.liwa1.com/services/offices.html"/>
+  </url>
+  <url><loc>https://www.liwa1.com/services/residential.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.liwa1.com/services/residential.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.liwa1.com/en/services/residential.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.liwa1.com/services/residential.html"/>
+  </url>
+  <url><loc>https://www.liwa1.com/en/services/spa.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.liwa1.com/services/spa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.liwa1.com/en/services/spa.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.liwa1.com/services/spa.html"/>
+  </url>
+  <url><loc>https://www.liwa1.com/en/services/restaurants.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.liwa1.com/services/restaurants.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.liwa1.com/en/services/restaurants.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.liwa1.com/services/restaurants.html"/>
+  </url>
+  <url><loc>https://www.liwa1.com/en/services/offices.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.liwa1.com/services/offices.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.liwa1.com/en/services/offices.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.liwa1.com/services/offices.html"/>
+  </url>
+  <url><loc>https://www.liwa1.com/en/services/residential.html</loc><lastmod>2026-06-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.liwa1.com/services/residential.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.liwa1.com/en/services/residential.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.liwa1.com/services/residential.html"/>
+  </url>
+
   <url><loc>https://www.liwa1.com/blog/anwa-kohuf-melh.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.liwa1.com/blog/decor-fonduki-fakher.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.liwa1.com/blog/decor-matam-cafe.html</loc><lastmod>2026-05-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>

@@ -4,13 +4,6 @@
 User-agent: *
 Allow: /
 Allow: /assets/
-Disallow: /crm.html
-Disallow: /crm-login.html
-Disallow: /crm.js
-Disallow: /crm.css
-Disallow: /db.js
-Disallow: /supabase-config.js
-Disallow: /supabase-schema.sql
 
 # Allow Googlebot full access to CSS/JS so it can render the page correctly
 User-agent: Googlebot

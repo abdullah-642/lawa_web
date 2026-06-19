@@ -81,49 +81,57 @@
     }
   }
 
-  // ----------- Contact form: save to CRM intake (Supabase) -----------
-  window.sendWhatsApp = async function (e) {
-    e.preventDefault();
-    const lang = document.documentElement.dataset.lang;
-    const name = document.getElementById("f-name").value.trim();
-    const phone = document.getElementById("f-phone").value.trim();
-    const type = document.getElementById("f-type").value;
-    const msg = document.getElementById("f-msg").value.trim();
+  // ----------- Contact form: send the request straight to WhatsApp -----------
+  window.sendWhatsApp = function (e) {
+    if (e) e.preventDefault();
+    const form = document.getElementById("contactForm");
+    if (!form) return false;
+    const lang = document.documentElement.dataset.lang || "ar";
 
-    // Save to CRM intake (Supabase via DB, or localStorage as fallback).
-    if (window.CRM && CRM.intake) {
-      try {
-        const submitBtn = document.querySelector("#contactForm button[type=submit]");
-        if (submitBtn) { submitBtn.disabled = true; submitBtn.style.opacity = ".7"; }
-        await CRM.intake.submit({ name, phone, type, message: msg, source: "نموذج الموقع" });
-      } catch (ex) { console.warn("intake submit failed:", ex); }
+    const val = (n) => {
+      const el = form.elements[n];
+      return el ? (el.value || "").trim() : "";
+    };
+    const name = val("name");
+    const phone = val("phone");
+    const email = val("email");
+    const msg = val("message");
+    // Use the human-readable label of the selected project type
+    const typeSel = form.elements["type"];
+    const type = typeSel && typeSel.selectedIndex >= 0
+      ? typeSel.options[typeSel.selectedIndex].text.trim()
+      : "";
 
-      // Show success state in the form
-      const form = document.getElementById("contactForm");
-      const successHTML = lang === "ar"
-        ? `<div class="form-success">
-             <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-             <h3>تم استلام طلبك بنجاح</h3>
-             <p>شكراً ${name}، فريق لواء كونسبت سيتواصل معك على الرقم ${phone} خلال 24 ساعة.</p>
-             <button type="button" class="btn btn-line" onclick="location.reload()">إرسال طلب آخر</button>
-           </div>`
-        : `<div class="form-success">
-             <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-             <h3>Your request was received</h3>
-             <p>Thanks ${name}, the Liwa Concept team will reach you on ${phone} within 24 hours.</p>
-             <button type="button" class="btn btn-line" onclick="location.reload()">Send another</button>
-           </div>`;
-      form.innerHTML = successHTML;
-    } else {
-      // Fallback: WhatsApp
-      const text = lang === "ar"
-        ? `أهلاً، أنا ${name}\nجوالي: ${phone}\nنوع المشروع: ${type}\n\nتفاصيل المشروع:\n${msg}`
-        : `Hello, I'm ${name}\nPhone: ${phone}\nProject type: ${type}\n\nProject details:\n${msg}`;
-      const url = `https://wa.me/966544668836?text=${encodeURIComponent(text)}`;
-      window.open(url, "_blank");
-    }
+    // Build the WhatsApp message
+    const text = lang === "ar"
+      ? `أهلاً، أنا ${name}\nالجوال: ${phone}${email ? `\nالبريد: ${email}` : ""}\nنوع المشروع: ${type}\n\nتفاصيل المشروع:\n${msg}`
+      : `Hello, I'm ${name}\nPhone: ${phone}${email ? `\nEmail: ${email}` : ""}\nProject type: ${type}\n\nProject details:\n${msg}`;
+    const url = `https://wa.me/966544668836?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
+
+    // Show an inline success state
+    const successHTML = lang === "ar"
+      ? `<div class="form-success">
+           <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+           <h3>تم تجهيز طلبك</h3>
+           <p>شكراً ${name}، تم فتح واتساب لإرسال طلبك. سيتواصل معك فريق لواء كونسبت على ${phone} خلال 24 ساعة.</p>
+           <button type="button" class="btn btn-line" onclick="location.reload()">إرسال طلب آخر</button>
+         </div>`
+      : `<div class="form-success">
+           <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+           <h3>Your request is ready</h3>
+           <p>Thanks ${name}, WhatsApp opened to send your request. The Liwa Concept team will reach you on ${phone} within 24 hours.</p>
+           <button type="button" class="btn btn-line" onclick="location.reload()">Send another</button>
+         </div>`;
+    form.innerHTML = successHTML;
     return false;
   };
+
+  // Bind the handler to the contact form
+  document.addEventListener("DOMContentLoaded", () => {
+    const cf = document.getElementById("contactForm");
+    if (cf) cf.addEventListener("submit", window.sendWhatsApp);
+  });
 
   // ----------- 3D Background (Three.js) -----------
   function init3D() {
